@@ -1,6 +1,6 @@
 package org.academiadecodigo.apiores.carcrashteam;
 
-import com.sun.source.doctree.SeeTree;
+
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -48,6 +48,10 @@ public class Game {
 
     public void continenteMenu(){
 
+
+    }
+
+    public void init(){
 
     }
 

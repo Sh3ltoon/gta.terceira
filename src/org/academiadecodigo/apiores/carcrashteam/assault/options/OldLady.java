@@ -1,6 +1,8 @@
 package org.academiadecodigo.apiores.carcrashteam.assault.options;
 
 import org.academiadecodigo.apiores.carcrashteam.Player;
+import org.academiadecodigo.apiores.carcrashteam.Weapons.WeaponsFactory;
+import org.academiadecodigo.apiores.carcrashteam.Weapons.WeaponsInter;
 import org.academiadecodigo.apiores.carcrashteam.assault.Assault;
 
 public class OldLady implements Assault {
@@ -24,23 +26,23 @@ public class OldLady implements Assault {
     }
 
     @Override
-    public Weapons weaponsRate() {
+    public WeaponsInter weaponsRate() {
         double random = Math.ceil(Math.random()*100);
 
         if(random > 0 && 1 < random){
-            return WeaponsFactory.create(LIGHT_SABER);
+            return WeaponsFactory.createWeapon(LIGHT_SABER);
         }
 
         if(random > 1 && 3 < random){
-            return WeaponsFactory.create(SHOTGUN);
+            return WeaponsFactory.createWeapon(SHOTGUN);
         }
 
         if(random > 3 && 6 < random){
-            return WeaponsFactory.create(KNIFE);
+            return WeaponsFactory.createWeapon(KNIFE);
         }
 
         if(random > 6 && random < 15){
-            return WeaponsFactory.create(RUBBER_DUCK);
+            return WeaponsFactory.createWeapon(RUBBER_DUCK);
         }
 
         return null;

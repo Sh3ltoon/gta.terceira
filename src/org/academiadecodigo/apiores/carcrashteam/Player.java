@@ -1,5 +1,7 @@
 package org.academiadecodigo.apiores.carcrashteam;
 
+import org.academiadecodigo.apiores.carcrashteam.Weapons.Weapons;
+
 import java.util.Set;
 
 public class Player {
@@ -9,10 +11,11 @@ public class Player {
     private int experience;
     private int healthPoints;
     private int energyPoints;
+    private Set<Weapons> weapons;
     //set weapons
 
 
-    public Player(String name){
+    public Player(String name) {
         experience = 5;
         healthPoints = 200;
         energyPoints = 200;
@@ -45,7 +48,10 @@ public class Player {
         this.healthPoints = healthPoints;
     }
 
-
-
-
+    public void addWeapons(Weapons weapon){
+        weapons.add(weapon);
+    }
 }
+
+
+
