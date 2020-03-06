@@ -25,6 +25,9 @@ public class Player {
 
     }
 
+    public String getName() {
+        return name;
+    }
 
     public int getEnergy() {
         return energyPoints;

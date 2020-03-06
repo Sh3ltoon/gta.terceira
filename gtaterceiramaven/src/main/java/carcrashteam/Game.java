@@ -26,15 +26,18 @@ public class Game {
         this.prompt = prompt;
     }
 
-    public void createPlayer() {
+    public Player createPlayer() {
 
 
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage("Insert Your Nickname; \n");
 
         String name = prompt.getUserInput(scanner);
+        Player playerToCreate = new Player(name);
 
-        playerHashMap.put(name, new Player(name));
+        playerHashMap.put(name, playerToCreate);
+
+        return playerToCreate;
 
     }
 
@@ -43,7 +46,7 @@ public class Game {
         String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
-        scanner.setMessage("Welcome " + playerHashMap.get(name) + " to Grand Theft Auto Techeira \n");
+        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira \n");
         prompt.getUserInput(scanner);
 
     }
