@@ -10,10 +10,10 @@ import carcrashteam.assault.Assault;
 public class OldLady implements Assault {
     @Override
     public void successRate(Player player) {
-        double probability = Math.random() * player.getExperience();
+        double successProbability = Math.random() * player.getExperience();
 
-        if (probability >= 5) {
-            System.out.println("Success! You manage to assault the ");
+        if (successProbability >= 5) {
+            System.out.println("Success! You manage to assault the OldLady");
             player.setExperience(player.getExperience() + 3);
             player.setEnergy(player.getEnergy() - 3);
             return;
