@@ -1,5 +1,6 @@
 package carcrashteam.server;
 
+import carcrashteam.Game;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
@@ -13,12 +14,17 @@ public class Server {
     private ServerSocket server;
     private InputStream inputStream;
     private PrintStream printStream;
+    private Game game;
 
     public void init(){
 
         try {
+
             server = new ServerSocket(9000);
+            game = new Game();
+            game.init();
             startServer();
+
         }catch (Exception e){
             System.out.println("ERROR: " +e);
         }
@@ -54,20 +60,11 @@ public class Server {
 
         Prompt prompt;
 
-        String [] options = {"Assault","Nightlife","Hospital","Continente","Quit"};
-
         prompt = new Prompt(inputStream,printStream);
+        game.setPrompt(prompt);
 
-        MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("Welcome to GTA Terceira");
-
-        int number = prompt.getUserInput(scanner);
-
-        if(number == 1){
-            System.out.println("You choose to assault");
-        }else{
-            System.out.println("error");
-        }
+        game.createPlayer();
+        game.mainMenu("jaime");
 
     }
 

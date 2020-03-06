@@ -12,6 +12,13 @@ public class Game {
     private HashMap<String, Player> playerHashMap;
     private Prompt prompt = new Prompt(System.in, System.out);
 
+    public void init(){
+        playerHashMap = new HashMap<>();
+    }
+
+    public void setPrompt(Prompt prompt){
+        this.prompt = prompt;
+    }
 
     public void createPlayer(){
 
@@ -48,10 +55,6 @@ public class Game {
 
     public void continenteMenu(){
 
-
-    }
-
-    public void init(){
 
     }
 
