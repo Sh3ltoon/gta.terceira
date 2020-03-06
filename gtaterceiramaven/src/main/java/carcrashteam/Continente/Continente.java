@@ -21,8 +21,8 @@ public class Continente {
         return continenteOptions;
     }
 
-    public MenuInputScanner continenteMenu(String[] options){
-        MenuInputScanner continenteMenu = new MenuInputScanner(options);
+    public MenuInputScanner continenteMenu(){
+        MenuInputScanner continenteMenu = new MenuInputScanner(getContinenteOptions());
         continenteMenu.setMessage("Chose the weapon you want to buy:");
 
         return continenteMenu;
@@ -39,7 +39,7 @@ public class Continente {
                 player.setMoney(player.getMoney()-1300);
                 break;
             case 3:
-                player.addWeapons( WeaponsFactory.createWeapon(Weapons.LIGHT_SABER));
+                player.addWeapons(WeaponsFactory.createWeapon(Weapons.LIGHT_SABER));
                 player.setMoney(player.getMoney() - 4500);
                 break;
             case 4:
@@ -48,5 +48,6 @@ public class Continente {
                 break;
         }
     }
+
 
 }
