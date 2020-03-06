@@ -1,4 +1,6 @@
 package carcrashteam;
+
+
 import carcrashteam.assault.Assault;
 import carcrashteam.assault.AssaultFactory;
 import carcrashteam.assault.AssaultOptions;
@@ -15,26 +17,28 @@ import java.util.HashMap;
 public class Game {
 
     private HashMap<String, Player> playerHashMap;
-    private Prompt prompt;
+    private Prompt prompt = new Prompt(System.in, System.out);
 
     public void init() {
         playerHashMap = new HashMap<>();
-
     }
 
     public void setPrompt(Prompt prompt) {
         this.prompt = prompt;
     }
 
-    public void createPlayer() {
+    public Player createPlayer() {
 
 
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage("Insert Your Nickname; \n");
 
         String name = prompt.getUserInput(scanner);
+        Player playerToCreate = new Player(name);
 
-        playerHashMap.put(name, new Player(name));
+        playerHashMap.put(name, playerToCreate);
+
+        return playerToCreate;
 
     }
 
@@ -43,6 +47,8 @@ public class Game {
         String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
+        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira \n");
+        prompt.getUserInput(scanner);
         scanner.setMessage("Welcome " + playerHashMap.get(name) + " to Grand Theft Auto Techeira \n");
         int userChoice = prompt.getUserInput(scanner);
         mainMenuChecker(userChoice, name);
