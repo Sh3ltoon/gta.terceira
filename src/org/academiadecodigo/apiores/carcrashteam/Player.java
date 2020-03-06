@@ -19,7 +19,7 @@ public class Player {
     }
 
 
-    public int getEnergyPoints() {
+    public int getEnergy() {
         return energyPoints;
     }
 
@@ -27,11 +27,11 @@ public class Player {
         return experience;
     }
 
-    public int getHealthPoints() {
+    public int getHealth() {
         return healthPoints;
     }
 
-    public void setEnergyPoints(int energyPoints) {
+    public void setEnergy(int energyPoints) {
         this.energyPoints = energyPoints;
     }
 
@@ -39,9 +39,11 @@ public class Player {
         this.experience = experience;
     }
 
-    public void setHealthPoints(int healthPoints) {
+    public void setHealth(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
 
+    public void addWeapon(Weapons weaponsRate) {
+    }
 }
