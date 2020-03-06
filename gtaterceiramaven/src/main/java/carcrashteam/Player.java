@@ -2,8 +2,11 @@ package carcrashteam;
 
 import carcrashteam.Weapons.Weapons;
 import carcrashteam.Weapons.WeaponsInter;
+import org.academiadecodigo.bootcamp.Prompt;
 
 
+import java.net.Socket;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
@@ -14,8 +17,14 @@ public class Player {
     private int healthPoints;
     private int energyPoints;
     private int money;
+    private Prompt prompt;
     private Set<WeaponsInter> weapons;
+    private Socket socket;
     //set weapons
+
+
+
+
 
 
 
@@ -24,8 +33,17 @@ public class Player {
         experience = 5;
         healthPoints = 200;
         energyPoints = 200;
+        weapons = new HashSet<>();
         this.name = name;
 
+    }
+
+    public Prompt getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(Prompt prompt) {
+        this.prompt = prompt;
     }
 
     public void setMoney(int money) {
@@ -69,6 +87,10 @@ public class Player {
 
     public void looseWeapons(){
         weapons.removeAll(weapons);
+    }
+
+    public Set<WeaponsInter> getWeapons() {
+        return weapons;
     }
 }
 

@@ -6,6 +6,11 @@ public class RubberDuck implements WeaponsInter {
 
     private final int PRICE = 500;
 
+    private final String name = "Rubber Duck";
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public int getDamage() {
