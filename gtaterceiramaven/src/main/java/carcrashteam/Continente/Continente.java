@@ -9,13 +9,27 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
 public class Continente {
 
+    public String[] getContinenteOptions(){
+        String[] continenteOptions = new String[Weapons.values().length];
+        int counter = 0;
+
+        for (Weapons weapon: Weapons.values()) {
+            continenteOptions[counter] = weapon.getDescription() + ", cost: " + weapon.getCost();
+            counter++;
+        }
+
+        return continenteOptions;
+    }
+
+    public MenuInputScanner continenteMenu(String[] options){
+        MenuInputScanner continenteMenu = new MenuInputScanner(options);
+        continenteMenu.setMessage("Chose the weapon you want to buy:");
+
+        return continenteMenu;
+    }
+
     public void startContinente(int userchoice, Player player) {
-
-        WeaponsInter weaponToAdd = null;
-
-
         switch (userchoice) {
-
             case 1:
                 player.addWeapons( WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK));
                 player.setMoney(player.getMoney()-500);
@@ -33,8 +47,6 @@ public class Continente {
                 player.setMoney(player.getMoney() - 5000);
                 break;
         }
-
-
     }
 
 }

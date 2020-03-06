@@ -4,9 +4,7 @@ public class LightSaber  implements WeaponsInter {
 
     private final int DAMAGE = 40;
 
-    private final int PRICE = 4350;
-
-
+    private final int PRICE = 5000;
 
     @Override
     public int getDamage() {

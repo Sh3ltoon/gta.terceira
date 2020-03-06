@@ -4,7 +4,7 @@ public class Shotgun implements WeaponsInter{
 
     private final int DAMAGE = 60;
 
-    private final int PRICE = 5000;
+    private final int PRICE = 2500;
 
     @Override
     public int getDamage() {

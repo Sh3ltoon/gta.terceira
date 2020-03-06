@@ -2,9 +2,7 @@ package carcrashteam.Weapons;
 
 public class WeaponsFactory {
 
-
     public static WeaponsInter createWeapon(Weapons weapon) {
-
 
         switch (weapon) {
 
@@ -19,14 +17,6 @@ public class WeaponsFactory {
 
             default:
                 return new RubberDuck();
-
-
         }
-
-
     }
-
-
-
-
 }

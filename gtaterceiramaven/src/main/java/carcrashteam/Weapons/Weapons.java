@@ -1,15 +1,25 @@
 package carcrashteam.Weapons;
 
-public enum Weapons {
+public enum Weapons{
 
-    KNIFE,
+    KNIFE("Knife", 1300),
+    SHOTGUN("Shotgun",2500),
+    RUBBER_DUCK("Rubber Duck", 500),
+    LIGHT_SABER("Light Saber", 5000);
 
-    SHOTGUN,
+    private String description;
+    private int cost;
 
-    RUBBER_DUCK,
+    Weapons(String weapon, int price) {
+        this.description = weapon;
+        this.cost = price;
+    }
 
-    LIGHT_SABER,
+    public String getDescription() {
+        return description;
+    }
 
-
-
+    public int getCost() {
+        return cost;
+    }
 }
