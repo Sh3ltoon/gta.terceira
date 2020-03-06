@@ -1,6 +1,12 @@
 package carcrashteam;
 
 
+import carcrashteam.assault.Assault;
+import carcrashteam.assault.AssaultFactory;
+import carcrashteam.assault.AssaultOptions;
+import carcrashteam.nightlife.NightLifeOptions;
+import carcrashteam.nightlife.Nightlife;
+import carcrashteam.nightlife.NightlifeFactory;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -55,7 +61,17 @@ public class Game {
 
     }
 
-    public void assault(){
+    public void assault(AssaultOptions assaultOptions, Player player){
+
+        Assault assault = AssaultFactory.createAssault(assaultOptions);
+        assault.execute(player);
+
+    }
+
+    public void nightLifeExecute(NightLifeOptions option, Player player){
+
+        Nightlife nightlifeEvent = NightlifeFactory.createNightlife(option);
+        nightlifeEvent.execute(player);
 
     }
 

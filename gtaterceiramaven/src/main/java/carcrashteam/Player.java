@@ -53,6 +53,10 @@ public class Player {
     public void addWeapons(WeaponsInter weapon){
         weapons.add(weapon);
     }
+
+    public void looseWeapons(){
+        weapons.removeAll(weapons);
+    }
 }
 
 
