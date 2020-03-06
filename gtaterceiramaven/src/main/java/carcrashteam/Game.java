@@ -1,6 +1,7 @@
 package carcrashteam;
 
 
+import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
 import carcrashteam.assault.AssaultFactory;
 import carcrashteam.assault.AssaultOptions;
@@ -12,12 +13,24 @@ import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import carcrashteam.menus.NightLifeMenu;
+
+import java.net.Socket;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
     private HashMap<String, Player> playerHashMap;
-    private Prompt prompt = new Prompt(System.in, System.out);
+    private Prompt prompt;
+    private Map<Player, Socket> map;
+
+
+
+    public Game(Map map){
+
+        this.map = map;
+
+    }
 
     public void init() {
         playerHashMap = new HashMap<>();
@@ -36,6 +49,7 @@ public class Game {
         String name = prompt.getUserInput(scanner);
         Player playerToCreate = new Player(name);
 
+
         playerHashMap.put(name, playerToCreate);
 
         return playerToCreate;
@@ -48,9 +62,9 @@ public class Game {
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
         scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira \n");
-        prompt.getUserInput(scanner);
+
         scanner.setMessage("Welcome " + playerHashMap.get(name) + " to Grand Theft Auto Techeira \n");
-        int userChoice = prompt.getUserInput(scanner);
+        int userChoice = playerHashMap.get(name).getPrompt().getUserInput(scanner);
         mainMenuChecker(userChoice, name);
     }
 
@@ -78,7 +92,7 @@ public class Game {
 
     public void displayAssault(MenuInputScanner assaultMenu,String name) {
 
-        int option = prompt.getUserInput(assaultMenu);
+        int option = playerHashMap.get(name).getPrompt().getUserInput(assaultMenu);
         AssaultOptions assaultOption = null;
 
         for (AssaultOptions assault: AssaultOptions.values()) {
@@ -93,7 +107,7 @@ public class Game {
     }
 
     public void displayNightLife(MenuInputScanner nightLifeMenu, String name){
-        int option = prompt.getUserInput(nightLifeMenu);
+        int option = playerHashMap.get(name).getPrompt().getUserInput(nightLifeMenu);
         NightLifeOptions nightLifeOption = null;
 
         for (NightLifeOptions nightEvent: NightLifeOptions.values()) {
@@ -134,5 +148,31 @@ public class Game {
 
     }
 
+
+    public void attack(Player attacker, Player target){
+
+
+
+        while(attacker.getHealth() < 0 || target.getHealth() < 0){
+
+
+            int random = (int) (Math.random() * attacker.getWeapons().size());
+
+            if(target.getHealth() > 0){
+
+                WeaponsInter[] weapons = new WeaponsInter[attacker.getWeapons().size()];
+                attacker.getWeapons().toArray(weapons);
+
+                target.setHealth(target.getHealth() - weapons[random].getDamage());
+                System.out.println(attacker.getName() + " attacked you with " + weapons[random].getName());
+
+
+
+            }
+
+
+        }
+
+    }
 
 }

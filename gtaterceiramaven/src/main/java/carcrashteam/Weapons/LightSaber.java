@@ -6,7 +6,11 @@ public class LightSaber  implements WeaponsInter {
 
     private final int PRICE = 4350;
 
+    private final String name = "Light Saber";
 
+    public String getName() {
+        return name;
+    }
 
     @Override
     public int getDamage() {

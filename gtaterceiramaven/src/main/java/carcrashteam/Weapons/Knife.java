@@ -7,6 +7,11 @@ public class Knife implements WeaponsInter {
 
     private final int PRICE = 1300;
 
+    private final String name = "Knife";
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public int getDamage() {

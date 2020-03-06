@@ -6,5 +6,7 @@ public interface WeaponsInter {
 
     int getPrice();
 
+    String getName();
+
 
 }

@@ -19,7 +19,6 @@ public class Server {
    // private InputStream inputStream;
     //private PrintStream printStream;
 
-    private Game game;
     private Prompt prompt;
 
     private Map<Player,Socket > playersMap;
@@ -35,8 +34,6 @@ public class Server {
             server = new ServerSocket(9000);
             executorService = Executors.newCachedThreadPool();
             playersMap = new HashMap<>();
-            game = new Game();
-            game.init();
             startServer();
 
         }catch (Exception e){
@@ -60,17 +57,15 @@ public class Server {
         }
 
     }
-    public void askPlayerName(InputStream inputStream, PrintStream printStream){
+    public void askPlayerName(Game game){
 
-        prompt = new Prompt(inputStream,printStream);
-        game.setPrompt(prompt);
+
         playerLogged = game.createPlayer(); // check if the name isn't taken
 
     }
-    public void servePlayer(InputStream inputStream, PrintStream printStream){
+    public void servePlayer(Game game){
 
-        prompt = new Prompt(inputStream,printStream);
-        game.setPrompt(prompt);
+
         game.mainMenu(playerLogged.getName());
 
     }
@@ -88,6 +83,7 @@ public class Server {
         Socket playerSocket;
         InputStream inputStream;
         PrintStream printStream;
+        Game game;
 
 
         public void setSocket(Socket playerSocket){
@@ -107,9 +103,12 @@ public class Server {
                 System.out.println("dass");
             }
 
-            askPlayerName(inputStream,printStream);
+            game = new Game(playersMap);
+            game.init();
+            game.setPrompt(new Prompt(inputStream, printStream));
+            askPlayerName(game);
             playersMap.put(playerLogged,playerSocket);
-            servePlayer(inputStream,printStream );
+            servePlayer(game);
 
         }
     }
