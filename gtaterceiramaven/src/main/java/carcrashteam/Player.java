@@ -13,11 +13,14 @@ public class Player {
     private int experience;
     private int healthPoints;
     private int energyPoints;
+    private int money;
     private Set<WeaponsInter> weapons;
     //set weapons
 
 
+
     public Player(String name) {
+        money = 100;
         experience = 5;
         healthPoints = 200;
         energyPoints = 200;
@@ -25,6 +28,13 @@ public class Player {
 
     }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 
     public int getEnergy() {
         return energyPoints;

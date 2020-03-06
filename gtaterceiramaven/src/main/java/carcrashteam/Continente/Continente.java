@@ -9,32 +9,28 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
 public class Continente {
 
+    public void startContinente(int userchoice, Player player) {
 
-    String[] weapons = {"Rubber duck: " + 500, "Knife: " + 1300, "Light Saber: " + 4500, "Shotgun: " + 5000};
-
-    MenuInputScanner menuGunShop = new MenuInputScanner(weapons);
-
-    Prompt prompt = new Prompt(System.in, System.out);
-
-    public void startContinente(Player player) {
-
-        int answer = prompt.getUserInput(menuGunShop);
         WeaponsInter weaponToAdd = null;
 
 
-        switch (answer) {
+        switch (userchoice) {
 
             case 1:
-                weaponToAdd = WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
+                player.addWeapons( WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK));
+                player.setMoney(player.getMoney()-500);
                 break;
             case 2:
-                weaponToAdd =  WeaponsFactory.createWeapon(Weapons.KNIFE);
+                player.addWeapons(WeaponsFactory.createWeapon(Weapons.KNIFE));
+                player.setMoney(player.getMoney()-1300);
                 break;
             case 3:
-                weaponToAdd = WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
+                player.addWeapons( WeaponsFactory.createWeapon(Weapons.LIGHT_SABER));
+                player.setMoney(player.getMoney() - 4500);
                 break;
             case 4:
-                weaponToAdd = WeaponsFactory.createWeapon(Weapons.SHOTGUN);
+                player.addWeapons( WeaponsFactory.createWeapon(Weapons.SHOTGUN));
+                player.setMoney(player.getMoney() - 5000);
                 break;
         }
 
