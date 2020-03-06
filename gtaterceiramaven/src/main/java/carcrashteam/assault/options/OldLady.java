@@ -1,6 +1,7 @@
 package carcrashteam.assault.options;
 
 
+import carcrashteam.utilities.Messages;
 import carcrashteam.Player;
 import carcrashteam.Weapons.Weapons;
 import carcrashteam.Weapons.WeaponsFactory;
@@ -13,7 +14,7 @@ public class OldLady implements Assault {
         double successProbability = Math.random() * player.getExperience();
 
         if (successProbability >= 5) {
-            System.out.println("Success! You manage to assault the OldLady");
+            System.out.println(Messages.SUCCESS_ASSAULT + " OldLady.");
             player.setExperience(player.getExperience() + 3);
             player.setEnergy(player.getEnergy() - 3);
             return;
@@ -29,21 +30,21 @@ public class OldLady implements Assault {
 
     @Override
     public WeaponsInter weaponsRate() {
-        double random = Math.ceil(Math.random()*100);
+        double chanceGetWeapon = Math.ceil(Math.random()*100);
 
-        if(random > 0 && 1 < random){
+        if(chanceGetWeapon > 0 && 1 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
         }
 
-        if(random > 1 && 3 < random){
+        if(chanceGetWeapon > 1 && 3 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.SHOTGUN);
         }
 
-        if(random > 3 && 6 < random){
+        if(chanceGetWeapon > 3 && 6 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.KNIFE);
         }
 
-        if(random > 6 && random < 15){
+        if(chanceGetWeapon > 6 && chanceGetWeapon < 15){
             return WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
         }
 

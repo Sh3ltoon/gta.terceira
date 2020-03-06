@@ -1,6 +1,7 @@
 package carcrashteam.assault.options;
 
 
+import carcrashteam.utilities.Messages;
 import carcrashteam.Player;
 import carcrashteam.Weapons.Weapons;
 import carcrashteam.Weapons.WeaponsFactory;
@@ -14,6 +15,7 @@ public class GracaRestaurant implements Assault {
         double successProbability = Math.random() * player.getExperience();
 
         if(successProbability >= 10){
+            System.out.println(Messages.SUCCESS_ASSAULT + " GracaRestaurant.");
             player.setExperience(player.getExperience() + 6);
             player.setEnergy(player.getEnergy() - 6);
             return;
@@ -29,21 +31,21 @@ public class GracaRestaurant implements Assault {
 
     @Override
     public WeaponsInter weaponsRate() {
-        double random = Math.ceil(Math.random()*100);
+        double chanceGetWeapon = Math.ceil(Math.random()*100);
 
-        if(random > 0 && 2 < random){
+        if(chanceGetWeapon > 0 && 2 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
         }
 
-        if(random > 2 && 4 < random){
+        if(chanceGetWeapon > 2 && 4 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.SHOTGUN);
         }
 
-        if(random > 4 && 10 < random){
+        if(chanceGetWeapon > 4 && 10 < chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.KNIFE);
         }
 
-        if(random > 10 && random < 20){
+        if(chanceGetWeapon > 10 && chanceGetWeapon < 20){
             return WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
         }
 
