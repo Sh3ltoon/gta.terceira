@@ -1,20 +1,22 @@
 package org.academiadecodigo.apiores.carcrashteam.assault.options;
 
+import org.academiadecodigo.apiores.carcrashteam.Player;
 import org.academiadecodigo.apiores.carcrashteam.assault.Assault;
 
 public class SergioAvila implements Assault {
+
     @Override
-    public int successRate() {
+    public void successRate(Player player) {
+
+    }
+
+    @Override
+    public double weaponsRate() {
         return 0;
     }
 
     @Override
-    public int weaponsRate() {
-        return 0;
-    }
-
-    @Override
-    public void execute() {
+    public void execute(Player player) {
 
     }
 }

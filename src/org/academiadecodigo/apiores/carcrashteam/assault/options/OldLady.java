@@ -10,8 +10,8 @@ public class OldLady implements Assault {
 
         if (probability >= 5) {
             System.out.println("Success! You manage to assault the ");
-            player.setExperience(player.getExperience + 3);
-            player.setEnergy(player.getEnergy - 3);
+            player.setExperience(player.getExperience() + 3);
+            player.setEnergy(player.getEnergy() - 3);
             return;
         }
 

@@ -4,5 +4,5 @@ public enum AssaultOptions{
     OLDLADY ,
     GRACARESTAURANT,
     AC,
-    SERGIOAVILA
+    SERGIOAVILA;
 }

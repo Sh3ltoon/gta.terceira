@@ -8,15 +8,18 @@ import org.academiadecodigo.apiores.carcrashteam.assault.options.SergioAvila;
 public class AssaultFactory {
 
     public static Assault createAssault(AssaultOptions assault){
+        Assault robbery = null;
         switch (assault){
             case OLDLADY:
-                return new OldLady();
+                robbery = new OldLady();
             case GRACARESTAURANT:
-                return new GracaRestaurant();
+                robbery = new GracaRestaurant();
             case AC:
-                return new AC();
-            default:
-                return new SergioAvila();
+                robbery = new AC();
+            case SERGIOAVILA:
+                robbery = new SergioAvila();
         }
+
+        return robbery;
     }
 }
