@@ -1,31 +1,21 @@
 package carcrashteam.assault.options;
 
 
+import carcrashteam.assault.AssaultOptions;
 import carcrashteam.utilities.Messages;
 import carcrashteam.Player;
 import carcrashteam.Weapons.Weapons;
 import carcrashteam.Weapons.WeaponsFactory;
 import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
+import org.academiadecodigo.bootcamp.Prompt;
 
-public class OldLady implements Assault {
-    @Override
+import java.io.PrintStream;
+
+public class OldLady extends AssaultAbstract {
+
     public void successRate(Player player) {
-        double successProbability = Math.random() * player.getExperience();
-
-        if (successProbability >= 5) {
-            System.out.println(Messages.SUCCESS_ASSAULT + " OldLady.");
-            player.setExperience(player.getExperience() + 3);
-            player.setEnergy(player.getEnergy() - 3);
-            return;
-        }
-
-        try {
-            System.out.println(Messages.SENT_PRISON);
-            Thread.sleep(3000);
-        } catch (InterruptedException ex) {
-            ex.getMessage();
-        }
+        super.successRate(player, AssaultOptions.OLD_LADY);
     }
 
     @Override

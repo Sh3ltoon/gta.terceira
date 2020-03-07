@@ -9,19 +9,22 @@ import carcrashteam.assault.options.SergioAvila;
 public class AssaultFactory {
 
     public static Assault createAssault(AssaultOptions assault){
+
         Assault robbery = null;
+
         switch (assault){
-            case OLDLADY:
+            case OLD_LADY:
                 robbery = new OldLady();
                 break;
-            case GRACARESTAURANT:
+            case GRACA_RESTAURANT:
                 robbery = new GracaRestaurant();
                 break;
             case AC:
                 robbery = new AC();
                 break;
-            case SERGIOAVILA:
+            case SERGIO_AVILA:
                 robbery = new SergioAvila();
+                break;
         }
 
         return robbery;

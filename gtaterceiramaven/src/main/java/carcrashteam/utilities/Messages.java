@@ -7,7 +7,7 @@ public class Messages {
     public static final String HIJACK_AC = "Hijack <Academia de Código>";
     public static final String ROB_SERGIO_AVILA = "Rob Sergio Avila's Wallet";
 
-    public static final String SENT_PRISON = "You were sent to prison. Now you have to wait to be released.";
+    public static final String SENT_PRISON = "You were sent to prison. Now you have to wait to be released.\n Waiting time: ";
     public static final String SUCCESS_ASSAULT = "Success! You manage to assault: ";
 
     public static final String GO_DELMAN = "Get Drunk at Delman";

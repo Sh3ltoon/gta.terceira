@@ -12,6 +12,7 @@ import carcrashteam.nightlife.NightLifeOptions;
 import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
 import carcrashteam.utilities.Messages;
+import carcrashteam.utilities.Checker;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -71,17 +72,20 @@ public class Game {
 
     public void mainMenu(String name) {
 
-        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack","Quit"};
+        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
         scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira. \n Game Menu:");
 
         int userChoice = prompt.getUserInput(scanner);
-        mainMenuChecker(userChoice, name);
-        mainMenu(name);
+        try {
+            mainMenuChecker(userChoice, name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void mainMenuChecker(Integer userChoice, String name) {
+    public void mainMenuChecker(Integer userChoice, String name) throws IOException {
         switch (userChoice) {
             case 1:
                 displayAssault(new AssaultMenu().assaultMenu(), name);
@@ -102,15 +106,14 @@ public class Game {
             case 6:
                 attack(name);
                 break;
-            case 7:
-                System.exit(0);
         }
     }
 
 
     public void displayAssault(MenuInputScanner assaultMenu, String name) {
 
-        int option = playerHashMap.get(name).getPrompt().getUserInput(assaultMenu);
+        int option =  prompt.getUserInput(assaultMenu);
+
         AssaultOptions assaultOption = null;
 
         for (AssaultOptions assault : AssaultOptions.values()) {
@@ -120,7 +123,10 @@ public class Game {
                 break;
             }
         }
+
         assault(assaultOption, playerHashMap.get(name));
+
+        mainMenu(name);
 
     }
 
@@ -146,13 +152,16 @@ public class Game {
         System.out.println(Messages.LEAVING_HOSPITAL);
     }
 
-    public void displayStatus(String name) {
-        Player player = playerHashMap.get(name);
-        System.out.println(name + "you have :\n" +
-                player.getExperience() + " of experience.\n" +
-                player.getEnergy() + " of energy.\n" +
-                player.getMoney() + " of money.\n" +
-                player.getHealth() + "of health.");
+    public void displayStatus(String name) throws IOException {
+        Player player = getPlayer(name);
+        PrintStream status = new PrintStream(map.get(player).getOutputStream());
+        status.println("Name: " + player.getName() + "\n" +
+                "Experience: " + player.getExperience() +
+                "\nMoney: " + player.getMoney() +
+                "\nHealth: " + player.getHealth() +
+                "\nEnergy: " + player.getEnergy() +
+                "\n Weapons: " + player.getMoney());
+        mainMenu(name);
     }
 
     public int displayContinente(MenuInputScanner continenteMenu, String name) {
@@ -177,7 +186,6 @@ public class Game {
 
     public void attack(String name) {
 
-
         Player target = getTarget(name);
         Player attacker = getPlayer(name);
         weaponsToBattle(target);
@@ -185,42 +193,39 @@ public class Game {
         Player winner;
         Player looser;
 
+        if( Checker.assaultChecker(attacker,target)) {
+            if (target.getExperience() > attacker.getExperience()) {
+                winner = target;
+                looser = attacker;
 
-        if(target.getExperience()>attacker.getExperience()){
-            winner = target;
-            looser = attacker;
+            } else {
+                winner = attacker;
+                looser = target;
 
-        }else{
-            winner = attacker;
-            looser = target;
-
-        }
+            }
             looser.setHealth(0);
             looser.looseWeapons();
-            winner.setExperience(winner.getExperience() + looser.getExperience()/10);
-            looser.setExperience(looser.getExperience() - looser.getExperience()/10);
+            winner.setExperience(winner.getExperience() + looser.getExperience() / 10);
+            looser.setExperience(looser.getExperience() - looser.getExperience() / 10);
             int robMoney = looser.getMoney() / 3;
             looser.setMoney(looser.getMoney() - robMoney);
-            winner.setMoney(winner.getMoney()+robMoney);
+            winner.setMoney(winner.getMoney() + robMoney);
+
+            String looserMessage = "You were fucked up by " + winner.getName() + " , Took from you " + robMoney + "$.";
+            String winnerMessage = "You won the fight with " + looser.getName() + " , you take from him " + robMoney + "$.";
+
+            playerNotifier(winner, looser, looserMessage, winnerMessage);
 
 
+            mainMenu(name);
+        }else{
+            String message = "You can't attack " + target.getName();
+            notifier(attacker, message);
+            mainMenu(name);
 
-
-        PrintStream winnerOutput = null;
-        PrintStream looserOutput = null;
-
-        try {
-            looserOutput = new PrintStream(map.get(looser).getOutputStream(), true);
-            winnerOutput = new PrintStream(map.get(winner).getOutputStream(), true);
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        looserOutput.println("You were fucked up by " + winner.getName() + ", go to the hospital to heal yourself! Taked you " + robMoney + "$.");
-        winnerOutput.println("You won a fight against " + looser.getName() + ", you took from the fight " + robMoney + "$.");
 
-        mainMenu(name);
 
 
     }
@@ -263,13 +268,48 @@ public class Game {
 
         Set<WeaponsInter> weapons = player.getWeapons();
 
-        for (WeaponsInter weapon: weapons) {
+        for (WeaponsInter weapon : weapons) {
 
             player.setExperience(player.getExperience() + weapon.getDamage());
 
         }
 
 
+    }
+
+
+    public void playerNotifier(Player player1, Player player2, String messageP1, String messageP2) {
+
+        PrintStream p1Output = null;
+        PrintStream p2Output = null;
+
+        try {
+            p1Output = new PrintStream(map.get(player2).getOutputStream(), true);
+            p2Output = new PrintStream(map.get(player1).getOutputStream(), true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        p1Output.println(messageP1);
+        p2Output.println(messageP2);
+
+
+
+    }
+
+    public void notifier(Player player, String message){
+        PrintStream output = null;
+
+        try {
+
+            output = new PrintStream(map.get(player).getOutputStream(), true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        output.println(message);
     }
 
 }
