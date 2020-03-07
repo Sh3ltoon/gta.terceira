@@ -2,9 +2,8 @@ package carcrashteam.server;
 import carcrashteam.Game;
 import carcrashteam.Player;
 import org.academiadecodigo.bootcamp.Prompt;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -91,11 +90,9 @@ public class Server {
                 System.out.println("\n --- Connection accepted ---");
                 inputStream = playerSocket.getInputStream();
                 printStream = new PrintStream(playerSocket.getOutputStream());
-
             }catch (Exception e){
                 System.out.println(e);
             }
-
             game = new Game(playersMap);
             game.init();
             game.setPrompt(new Prompt(inputStream, printStream));

@@ -2,13 +2,12 @@ package carcrashteam.server;
 
 import org.academiadecodigo.bootcamp.Prompt;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Client {
+public class Client implements Runnable {
 
     private PrintWriter serverWriter;
     private BufferedReader serverReader;
@@ -22,44 +21,86 @@ public class Client {
         client.init();
     }
 
-    public void init(){
+    public void send() {
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            while (clientSocket.isBound()) {
+                String chat = reader.readLine();
+                if (chat != null) {
+                    writer.write(chat);
+                    writer.newLine();
+                    writer.flush();
+                } else {
+                    writer.close();
+                    reader.close();
+                    clientSocket.close();
+                }
+                if (chat.equals("/quit")) {
+                    writer.close();
+                    reader.close();
+                    clientSocket.close();
+                    return;
+                }
+            }
+            writer.close();
+            reader.close();
+            clientSocket.close();
+            System.out.println(clientSocket.isClosed());
+
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+
+    }
+
+
+    public void init() {
 
         try {
 
             clientSocket = new Socket("localhost", 8000);
-            serverWriter = new PrintWriter(clientSocket.getOutputStream(),true);
+            serverWriter = new PrintWriter(clientSocket.getOutputStream(), true);
             inputStream = clientSocket.getInputStream();
             serverReader = new BufferedReader(new InputStreamReader(inputStream));
-            getMenu();
-
-        }catch (Exception e){
-            System.out.println("Error: " +e);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.submit(this);
+            send();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
 
     }
 
 
-    public void getMenu(){
+    public void getMenu() {
 
-        byte[] byteReader;
+        String buffer = "gg";
 
-       try {
+        try {
 
-           serverWriter.write(1);
+            while (clientSocket.isBound()) {
 
-           byteReader = inputStream.readAllBytes();
+                buffer = serverReader.readLine();
+                System.out.println(buffer);
 
-           String s = new String(byteReader);
+            }
+            serverReader.close();
+            System.out.println(clientSocket.isClosed());
+            clientSocket.close();
 
-           System.out.println(s +"caralho que te foda");
-
-
-       }catch (Exception e){
-            System.out.println("error:" +e);
+        } catch (Exception e) {
+            System.out.println("error:" + e);
         }
 
 
     }
 
 
+    @Override
+    public void run() {
+        getMenu();
+
+    }
 }
