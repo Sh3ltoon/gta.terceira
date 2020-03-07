@@ -111,7 +111,8 @@ public class Game {
 
     public void displayAssault(MenuInputScanner assaultMenu, String name) {
 
-        int option = playerHashMap.get(name).getPrompt().getUserInput(assaultMenu);
+        int option =  prompt.getUserInput(assaultMenu);
+
         AssaultOptions assaultOption = null;
 
         for (AssaultOptions assault : AssaultOptions.values()) {
@@ -121,7 +122,10 @@ public class Game {
                 break;
             }
         }
+
         assault(assaultOption, playerHashMap.get(name));
+
+        mainMenu(name);
 
     }
 

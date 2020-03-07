@@ -1,6 +1,7 @@
 package carcrashteam.assault.options;
 
 
+import carcrashteam.assault.AssaultOptions;
 import carcrashteam.utilities.Messages;
 import carcrashteam.Player;
 import carcrashteam.Weapons.Weapons;
@@ -8,26 +9,10 @@ import carcrashteam.Weapons.WeaponsFactory;
 import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
 
-public class SergioAvila implements Assault {
+public class SergioAvila extends AssaultAbstract {
 
-    @Override
     public void successRate(Player player) {
-        double successProbability = Math.random() * player.getExperience();
-
-        if(successProbability >= 40){
-            System.out.println(Messages.SUCCESS_ASSAULT + " Sérgio Avila.");
-            player.setExperience(player.getExperience() + 20);
-            player.setEnergy(player.getEnergy() - 25);
-            return;
-        }
-
-        try{
-            System.out.println(Messages.SENT_PRISON);
-            Thread.sleep(3000);
-        }catch (InterruptedException ex){
-            ex.getMessage();
-        }
-
+        super.successRate(player, AssaultOptions.SERGIO_AVILA);
     }
 
     @Override

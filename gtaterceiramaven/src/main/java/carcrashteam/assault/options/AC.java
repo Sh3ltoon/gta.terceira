@@ -1,5 +1,6 @@
 package carcrashteam.assault.options;
 
+import carcrashteam.assault.AssaultOptions;
 import carcrashteam.utilities.Messages;
 import carcrashteam.Player;
 import carcrashteam.Weapons.Weapons;
@@ -7,25 +8,10 @@ import carcrashteam.Weapons.WeaponsFactory;
 import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
 
-public class AC implements Assault {
+public class AC extends AssaultAbstract {
 
-    @Override
     public void successRate(Player player) {
-        double successProbability = Math.random() * player.getExperience();
-
-        if(successProbability >= 20){
-            System.out.println(Messages.SUCCESS_ASSAULT + " AC.");
-            player.setExperience(player.getExperience() + 10);
-            player.setEnergy(player.getEnergy() -12);
-            return;
-        }
-
-        try{
-            System.out.println();
-            Thread.sleep(3000);
-        }catch(InterruptedException ex){
-            ex.getMessage();
-        }
+        super.successRate(player, AssaultOptions.AC);
     }
 
     @Override
