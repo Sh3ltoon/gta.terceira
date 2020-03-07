@@ -1,16 +1,12 @@
 package carcrashteam;
 
-import carcrashteam.Weapons.Weapons;
 import carcrashteam.Weapons.WeaponsInter;
 import org.academiadecodigo.bootcamp.Prompt;
-
-
 import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
-
 
     private String name;
     private double experience;
@@ -22,15 +18,8 @@ public class Player {
     private Socket socket;
     private boolean jailed;
 
-
-
-
-
-
-
-
-
     public Player(String name) {
+
         money = 100;
         experience = 5;
         healthPoints = 200;

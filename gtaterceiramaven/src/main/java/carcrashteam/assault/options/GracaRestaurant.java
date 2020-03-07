@@ -15,27 +15,8 @@ public class GracaRestaurant extends AssaultAbstract {
         super.successRate(player, AssaultOptions.GRACA_RESTAURANT);
     }
 
-    @Override
     public WeaponsInter weaponsRate() {
-        double chanceGetWeapon = Math.ceil(Math.random()*100);
-
-        if(chanceGetWeapon > 0 && 2 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
-        }
-
-        if(chanceGetWeapon > 2 && 4 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.SHOTGUN);
-        }
-
-        if(chanceGetWeapon > 4 && 10 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.KNIFE);
-        }
-
-        if(chanceGetWeapon > 10 && chanceGetWeapon < 20){
-            return WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
-        }
-
-        return null;
+        return super.weaponsRate(AssaultOptions.GRACA_RESTAURANT);
     }
 
     @Override

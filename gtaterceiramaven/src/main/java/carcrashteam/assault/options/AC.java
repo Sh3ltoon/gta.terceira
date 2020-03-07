@@ -14,28 +14,8 @@ public class AC extends AssaultAbstract {
         super.successRate(player, AssaultOptions.AC);
     }
 
-    @Override
     public WeaponsInter weaponsRate() {
-        double chanceGetWeapon = Math.random() * 100;
-
-        if(chanceGetWeapon > 0 && 3 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
-        }
-
-        if(chanceGetWeapon > 3 && 6 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.SHOTGUN);
-        }
-
-        if(chanceGetWeapon > 6 && 12 < chanceGetWeapon){
-            return WeaponsFactory.createWeapon(Weapons.KNIFE);
-        }
-
-        if(chanceGetWeapon > 12 && chanceGetWeapon < 25){
-            return WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
-        }
-
-        return null;
-
+        return super.weaponsRate(AssaultOptions.AC);
     }
 
     @Override
