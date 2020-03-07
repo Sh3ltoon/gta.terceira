@@ -1,12 +1,14 @@
 package carcrashteam.Weapons;
 
+import carcrashteam.utilities.Messages;
+
 public class Shotgun implements WeaponsInter{
 
     private final int DAMAGE = 60;
 
     private final int PRICE = 2500;
 
-    private final String name = "Shotgun";
+    private final String name = Messages.SHOTGUN_DESCRIPTION;
 
     public String getName() {
         return name;

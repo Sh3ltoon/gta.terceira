@@ -1,12 +1,14 @@
 package carcrashteam.Weapons;
 
+import carcrashteam.utilities.Messages;
+
 public class RubberDuck implements WeaponsInter {
 
     private final int DAMAGE = 10;
 
     private final int PRICE = 500;
 
-    private final String name = "Rubber Duck";
+    private final String name = Messages.RUBBER_DUCK_DESCRIPTION;
 
     public String getName() {
         return name;

@@ -11,6 +11,7 @@ import carcrashteam.menus.NightLifeMenu;
 import carcrashteam.nightlife.NightLifeOptions;
 import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -57,11 +58,7 @@ public class Game {
 
 
         StringInputScanner scanner = new StringInputScanner();
-        scanner.setMessage("" +
-                "" +
-                "\n" +
-                "\n" +
-                "Insert Your Nickname: \n");
+        scanner.setMessage(Messages.MAIN_MENU_RULE);
 
         String name = prompt.getUserInput(scanner);
         Player playerToCreate = new Player(name);
@@ -142,11 +139,11 @@ public class Game {
     }
 
     public void hospital(String name) {
-        System.out.println("Welcome to Praia da Vitoria Health Center! Here we will take good care of your wounds!");
+        System.out.println(Messages.ENTERING_HOSPITAL);
         Player player = playerHashMap.get(name);
         player.setHealth(200);
         player.setMoney(player.getMoney() - 200);
-        System.out.println("Your're healed, charged you 200$! Good luck avoid COVID-19!");
+        System.out.println(Messages.LEAVING_HOSPITAL);
     }
 
     public void displayStatus(String name) {

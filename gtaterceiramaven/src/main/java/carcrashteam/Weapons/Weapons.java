@@ -1,11 +1,13 @@
 package carcrashteam.Weapons;
 
+import carcrashteam.utilities.Messages;
+
 public enum Weapons{
 
-    KNIFE("Knife", 1300),
-    SHOTGUN("Shotgun",2500),
-    RUBBER_DUCK("Rubber Duck", 500),
-    LIGHT_SABER("Light Saber", 5000);
+    KNIFE(Messages.KNIFE_DESCRIPTION, 1300),
+    SHOTGUN(Messages.SHOTGUN_DESCRIPTION,2500),
+    RUBBER_DUCK(Messages.RUBBER_DUCK_DESCRIPTION, 500),
+    LIGHT_SABER(Messages.LIGHT_SABER_DESCRIPTION, 5000);
 
     private String description;
     private int cost;

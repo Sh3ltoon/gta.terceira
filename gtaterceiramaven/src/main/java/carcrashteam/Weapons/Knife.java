@@ -1,5 +1,7 @@
 package carcrashteam.Weapons;
 
+import carcrashteam.utilities.Messages;
+
 public class Knife implements WeaponsInter {
 
 
@@ -7,7 +9,7 @@ public class Knife implements WeaponsInter {
 
     private final int PRICE = 1300;
 
-    private final String name = "Knife";
+    private final String name = Messages.KNIFE_DESCRIPTION;
 
     public String getName() {
         return name;

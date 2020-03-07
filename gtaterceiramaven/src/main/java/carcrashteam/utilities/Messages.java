@@ -14,11 +14,24 @@ public class Messages {
     public static final String GO_CLASSICBAR = "Find some bitJS at Classic Bar";
     public static final String BUY_WEED ="Get some Weed In Santa Rita Guetto!";
 
+    public static final String RUBBER_DUCK_DESCRIPTION = "Rubber Duck";
+    public static final String KNIFE_DESCRIPTION = "Knife";
+    public static final String SHOTGUN_DESCRIPTION = "Shotgun";
+    public static final String LIGHT_SABER_DESCRIPTION = "Light Saber";
+
     public static final String ENTERING_HOSPITAL = "Welcome to Praia da Vitoria Health Center! Here we will take good care of your wounds!";
     public static final String LEAVING_HOSPITAL = "Your're healed, charged you 200$! Good luck avoid COVID-19!";
 
-    public static final String MAIN_MENU_RULE = "----Welcome to GTA TECHeira----\n" +
-            "You will have the chance to commit robbery to important targets,\n go out to some great places or attack other players, you chose.";
+    public static final String MAIN_MENU_RULE = "\n" +
+            "                         _       __     __                             __           _______________       ____________________  __     _                            \n" +
+            "                        | |     / /__  / /________  ____ ___  ___     / /_____     / ____/_  __/   |     /_  __/ ____/ ____/ / / /__  (_)________ _                 \n" +
+            " _______________________| | /| / / _ \\/ / ___/ __ \\/ __ `__ \\/ _ \\   / __/ __ \\   / / __  / / / /| |      / / / __/ / /   / /_/ / _ \\/ / ___/ __ `/_________________\n" +
+            "/_____/_____/_____/_____/ |/ |/ /  __/ / /__/ /_/ / / / / / /  __/  / /_/ /_/ /  / /_/ / / / / ___ |     / / / /___/ /___/ __  /  __/ / /  / /_/ /_____/_____/_____/\n" +
+            "                        |__/|__/\\___/_/\\___/\\____/_/ /_/ /_/\\___/   \\__/\\____/   \\____/ /_/ /_/  |_|    /_/ /_____/\\____/_/ /_/\\___/_/_/   \\__,_/                   \n" +
+            "                                                                                                                                                                    \n"+
+            "You will have the chance to commit robbery to important targets, go out to some great places or attack other players, you chose.\n" +
+            "\n" +
+            "Insert your nickname:";
     public static final String ROBBERY_RULE ="In case of success your Experience Points will increase and you might get a WEAPON! \n It will cost you Energy Points.\n Be careful thought, you might end up in Prison.";
     public static final String NIGHTLIFE_RULE = "If you're lucky, your Energy Points will increase. \n Otherwise, your Experience Points will decrement and you will end up in the Hospital healing.";
     //public static final String HOSPITAL_RULE = "Your Health Points will be restored. It will cost you 200 $";
