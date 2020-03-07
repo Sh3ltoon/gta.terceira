@@ -91,7 +91,7 @@ public class Server {
                 inputStream = playerSocket.getInputStream();
                 printStream = new PrintStream(playerSocket.getOutputStream());
             }catch (Exception e){
-                System.out.println("dass");
+                System.out.println(e);
             }
             game = new Game(playersMap);
             game.init();

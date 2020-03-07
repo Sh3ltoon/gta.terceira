@@ -98,7 +98,7 @@ public class Game {
                 displayStatus(name);
                 break;
             case 6:
-                menu(name);
+                attack(name);
                 break;
         }
     }
@@ -171,40 +171,60 @@ public class Game {
     }
 
 
-    public void attack(Player attacker, Player target) {
+    public void attack(String name) {
 
 
-        while (attacker.getHealth() < 0 || target.getHealth() < 0) {
+        Player target = getTarget(name);
+        Player attacker = getPlayer(name);
+        weaponsToBattle(target);
+        weaponsToBattle(attacker);
+        Player winner;
+        Player looser;
 
 
-            int random = (int) (Math.random() * attacker.getWeapons().size());
+        if(target.getExperience()>attacker.getExperience()){
+            winner = target;
+            looser = attacker;
 
-            if (target.getHealth() > 0) {
-
-                WeaponsInter[] weapons = new WeaponsInter[attacker.getWeapons().size()];
-                attacker.getWeapons().toArray(weapons);
-
-                target.setHealth(target.getHealth() - weapons[random].getDamage());
-                System.out.println(attacker.getName() + " attacked you with " + weapons[random].getName());
-
-
-            }
-
+        }else{
+            winner = attacker;
+            looser = target;
 
         }
+            looser.setHealth(0);
+            looser.looseWeapons();
+            winner.setExperience(winner.getExperience() + looser.getExperience()/10);
+            looser.setExperience(looser.getExperience() - looser.getExperience()/10);
+            int robMoney = looser.getMoney() / 3;
+            looser.setMoney(looser.getMoney() - robMoney);
+            winner.setMoney(winner.getMoney()+robMoney);
+
+
+
+
+        PrintStream winnerOutput = null;
+        PrintStream looserOutput = null;
+
+        try {
+            looserOutput = new PrintStream(map.get(looser).getOutputStream(), true);
+            winnerOutput = new PrintStream(map.get(winner).getOutputStream(), true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        looserOutput.println("You were fucked up by " + winner.getName() + ", go to the hospital to heal yourself! Taked you " + robMoney + "$.");
+        winnerOutput.println("You won a fight against " + looser.getName() + ", you took from the fight " + robMoney + "$.");
+
+        mainMenu(name);
+
 
     }
 
-    public void menu(String name) {
+
+    public Player getTarget(String name) {
 
         Set<String> names = new HashSet<>();
-
-
-       /* for(int i = 0; i<names.length;i++){
-
-            names[i] = map.values().toArray(Player[] :: new)[i].getName();
-        }*/
-
 
         for (Player p : map.keySet()) {
             if (name.equals(p.getName())) {
@@ -213,40 +233,41 @@ public class Game {
             names.add(p.getName());
 
         }
-        String[] nam = names.toArray(String[]::new);
+
         StringSetInputScanner scanner = new StringSetInputScanner(names);
         scanner.setMessage(names.toString());
 
-
         String answer = prompt.getUserInput(scanner);
 
+        return getPlayer(answer);
+    }
+
+
+    public Player getPlayer(String name) {
 
         Player target = null;
-        for (Player p: map.keySet()) {
-            if(p.getName().equals(answer)){
+        for (Player p : map.keySet()) {
+            if (p.getName().equals(name)) {
                 target = p;
             }
-
-
         }
+        return target;
 
-
-        try {
-
-            System.out.println("teste map");
-
-
-
-            PrintStream p1Output = new PrintStream(map.get(target).getOutputStream(), true);
-
-            System.out.println("TESTE 1");
-            target.setHealth(-10);
-            System.out.println("estou dentro do if");
-            p1Output.println("you have been atacked by " + name + " you have " + target.getHealth() + " reamining points!");
-            mainMenu(name);
-
-        } catch (Exception e) {
-            System.out.println("dass:" +e);
-        }
     }
+
+    public void weaponsToBattle(Player player) {
+
+        Set<WeaponsInter> weapons = player.getWeapons();
+
+        for (WeaponsInter weapon: weapons) {
+
+            player.setExperience(player.getExperience() + weapon.getDamage());
+
+        }
+
+
+    }
+
 }
+
+
