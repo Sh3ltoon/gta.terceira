@@ -15,7 +15,7 @@ public class Server {
 
 
     private ServerSocket server;
-    private Map<Player,Socket > playersMap;
+    public static Map<Player,Socket > playersMap;
     private ExecutorService executorService;
     private Player playerLogged;
 

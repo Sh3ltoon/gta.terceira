@@ -20,7 +20,9 @@ public class Player {
     private Prompt prompt;
     private Set<WeaponsInter> weapons;
     private Socket socket;
-    //set weapons
+    private boolean jailed;
+
+
 
 
 
@@ -36,6 +38,10 @@ public class Player {
         weapons = new HashSet<>();
         this.name = name;
 
+    }
+
+    public boolean isJailed() {
+        return jailed;
     }
 
     public Prompt getPrompt() {
