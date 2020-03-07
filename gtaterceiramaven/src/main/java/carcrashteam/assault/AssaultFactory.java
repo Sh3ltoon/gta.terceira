@@ -13,10 +13,13 @@ public class AssaultFactory {
         switch (assault){
             case OLDLADY:
                 robbery = new OldLady();
+                break;
             case GRACARESTAURANT:
                 robbery = new GracaRestaurant();
+                break;
             case AC:
                 robbery = new AC();
+                break;
             case SERGIOAVILA:
                 robbery = new SergioAvila();
         }

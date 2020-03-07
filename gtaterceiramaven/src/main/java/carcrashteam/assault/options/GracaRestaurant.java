@@ -22,7 +22,7 @@ public class GracaRestaurant implements Assault {
         }
 
         try{
-            System.out.println("You were sent to prison. Now you have to wait to be released.");
+            System.out.println(Messages.SENT_PRISON);
             Thread.sleep(3000);
         }catch (InterruptedException ex){
             ex.getMessage();

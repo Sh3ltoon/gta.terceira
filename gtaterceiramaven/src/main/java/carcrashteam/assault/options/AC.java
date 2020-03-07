@@ -7,6 +7,8 @@ import carcrashteam.Weapons.WeaponsFactory;
 import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
 
+import java.io.PrintStream;
+
 public class AC implements Assault {
 
     @Override
@@ -17,11 +19,12 @@ public class AC implements Assault {
             System.out.println(Messages.SUCCESS_ASSAULT + " AC.");
             player.setExperience(player.getExperience() + 10);
             player.setEnergy(player.getEnergy() -12);
+            PrintStream assault =new PrintStream()
             return;
         }
 
         try{
-            System.out.println();
+            System.out.println(Messages.SENT_PRISON);
             Thread.sleep(3000);
         }catch(InterruptedException ex){
             ex.getMessage();

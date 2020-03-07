@@ -1,10 +1,12 @@
 package carcrashteam.assault;
 
+import carcrashteam.utilities.Messages;
+
 public enum AssaultOptions{
-    OLDLADY ("Rob Old Lady", 1),
-    GRACARESTAURANT("Shoplift Graça Restaurant", 2) ,
-    AC ("Hijack <Academia de Código>", 3),
-    SERGIOAVILA ("Rob Sergio Avila's Wallet", 4);
+    OLDLADY (Messages.ROB_OLD_LADY, 1),
+    GRACARESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2) ,
+    AC (Messages.HIJACK_AC, 3),
+    SERGIOAVILA (Messages.ROB_SERGIO_AVILA, 4);
 
     private String description;
     private int option;

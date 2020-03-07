@@ -57,7 +57,11 @@ public class Game {
 
 
         StringInputScanner scanner = new StringInputScanner();
-        scanner.setMessage("Insert Your Nickname; \n");
+        scanner.setMessage("" +
+                "" +
+                "\n" +
+                "\n" +
+                "Insert Your Nickname: \n");
 
         String name = prompt.getUserInput(scanner);
         Player playerToCreate = new Player(name);
@@ -70,13 +74,14 @@ public class Game {
 
     public void mainMenu(String name) {
 
-        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack"};
+        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack","Quit"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
-        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira \n");
+        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira. \n Game Menu:");
 
         int userChoice = prompt.getUserInput(scanner);
         mainMenuChecker(userChoice, name);
+        mainMenu(name);
     }
 
     public void mainMenuChecker(Integer userChoice, String name) {
@@ -100,6 +105,8 @@ public class Game {
             case 6:
                 menu(name);
                 break;
+            case 7:
+                System.exit(0);
         }
     }
 
