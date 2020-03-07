@@ -1,11 +1,17 @@
 package carcrashteam.nightlife;
 
 import carcrashteam.Player;
+import carcrashteam.utilities.Checker;
 import carcrashteam.utilities.Messages;
 
 public class Weed implements Nightlife{
     @Override
     public void execute(Player player) {
+
+        if(!Checker.nightlifeChecker(player,60)){
+            return;
+        }
+
         System.out.println(Messages.WEED_WELCOME);
         player.setMoney(player.getMoney() - 60);
 

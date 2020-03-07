@@ -4,6 +4,7 @@ import carcrashteam.Player;
 import carcrashteam.Weapons.WeaponsInter;
 import carcrashteam.assault.Assault;
 import carcrashteam.assault.AssaultOptions;
+import carcrashteam.utilities.Checker;
 import carcrashteam.utilities.Messages;
 
 import java.io.PrintStream;
@@ -12,13 +13,18 @@ public class AssaultAbstract implements Assault {
 
     public void successRate(Player player, AssaultOptions assaultOption){
 
+        if(!Checker.assaultChecker(player,110)){
+            return;
+        }
+
+        player.setEnergy(player.getEnergy() - 110);
+
         double successProbability = Math.random() * player.getExperience();
 
         if(successProbability >= assaultOption.getSuccessProbability()){
 
             System.out.println(Messages.SUCCESS_ASSAULT);
             player.setExperience(player.getExperience() + 6);
-            player.setEnergy(player.getEnergy() - 6);
             return;
 
         }
