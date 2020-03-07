@@ -160,7 +160,7 @@ public class Game {
                 "\nMoney: " + player.getMoney() +
                 "\nHealth: " + player.getHealth() +
                 "\nEnergy: " + player.getEnergy() +
-                "\n Weapons: " + player.getMoney());
+                "\n Weapons: " + player.getWeapons().toString());
         mainMenu(name);
     }
 

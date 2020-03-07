@@ -13,11 +13,11 @@ public class AssaultAbstract implements Assault {
 
     public void successRate(Player player, AssaultOptions assaultOption){
 
-        if(!Checker.assaultChecker(player,110)){
+        if(!Checker.assaultChecker(player,assaultOption.getEnergySpent())){
             return;
         }
 
-        player.setEnergy(player.getEnergy() - 110);
+        player.setEnergy(player.getEnergy() - assaultOption.getEnergySpent());
 
         double successProbability = Math.random() * player.getExperience();
 
