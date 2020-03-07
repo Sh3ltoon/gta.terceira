@@ -5,7 +5,7 @@ import carcrashteam.utilities.Messages;
 public enum NightLifeOptions {
 
     Delman(Messages.GO_DELMAN, 1),
-    ClassicBar(Messages.GO_CLASSICBAR, 2),
+    ClassicBar(Messages.GO_CLASSIC_BAR, 2),
     Weed (Messages.BUY_WEED, 3);
 
 
