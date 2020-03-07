@@ -13,7 +13,7 @@ public class Player {
 
 
     private String name;
-    private int experience;
+    private double experience;
     private int healthPoints;
     private int energyPoints;
     private int money;
@@ -61,7 +61,7 @@ public class Player {
         return energyPoints;
     }
 
-    public int getExperience() {
+    public double getExperience() {
         return experience;
     }
 
@@ -73,7 +73,7 @@ public class Player {
         this.energyPoints = energyPoints;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(double experience) {
         this.experience = experience;
     }
 

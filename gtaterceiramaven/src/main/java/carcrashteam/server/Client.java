@@ -26,7 +26,7 @@ public class Client {
 
         try {
 
-            clientSocket = new Socket("localhost", 9000);
+            clientSocket = new Socket("localhost", 8000);
             serverWriter = new PrintWriter(clientSocket.getOutputStream(),true);
             inputStream = clientSocket.getInputStream();
             serverReader = new BufferedReader(new InputStreamReader(inputStream));
