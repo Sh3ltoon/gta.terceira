@@ -92,6 +92,19 @@ public class Player {
     public Set<WeaponsInter> getWeapons() {
         return weapons;
     }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
 
 

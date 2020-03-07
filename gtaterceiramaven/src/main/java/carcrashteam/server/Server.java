@@ -14,24 +14,16 @@ import java.util.concurrent.Executors;
 public class Server {
 
 
-    // CLOSE THE SOCKETS
     private ServerSocket server;
-   // private InputStream inputStream;
-    //private PrintStream printStream;
-
-    private Prompt prompt;
-
     private Map<Player,Socket > playersMap;
     private ExecutorService executorService;
-    //private Socket clientSocket;
     private Player playerLogged;
-
 
     public void init(){
 
         try {
 
-            server = new ServerSocket(9000);
+            server = new ServerSocket(8000);
             executorService = Executors.newCachedThreadPool();
             playersMap = new HashMap<>();
             startServer();
@@ -61,6 +53,7 @@ public class Server {
 
 
         playerLogged = game.createPlayer(); // check if the name isn't taken
+        game.getPlayerHashMap().put(playerLogged.getName(), playerLogged);
 
     }
     public void servePlayer(Game game){
@@ -107,7 +100,9 @@ public class Server {
             game.init();
             game.setPrompt(new Prompt(inputStream, printStream));
             askPlayerName(game);
-            playersMap.put(playerLogged,playerSocket);
+            playerLogged.setSocket(playerSocket);
+            game.getMap().put(playerLogged, playerSocket);
+
             servePlayer(game);
 
         }
