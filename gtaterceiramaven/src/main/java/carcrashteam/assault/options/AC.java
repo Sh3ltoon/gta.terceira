@@ -19,7 +19,6 @@ public class AC implements Assault {
             System.out.println(Messages.SUCCESS_ASSAULT + " AC.");
             player.setExperience(player.getExperience() + 10);
             player.setEnergy(player.getEnergy() -12);
-            PrintStream assault =new PrintStream()
             return;
         }
 
