@@ -1,6 +1,7 @@
 package carcrashteam;
 
 import carcrashteam.Weapons.WeaponsInter;
+import carcrashteam.utilities.PlayerUtils;
 import org.academiadecodigo.bootcamp.Prompt;
 import java.net.Socket;
 import java.util.HashSet;
@@ -20,9 +21,9 @@ public class Player {
     public Player(String name) {
 
         money = 1000;
-        experience = 5;
-        healthPoints = 200;
-        energyPoints = 200;
+        experience = 300; // 5
+        healthPoints = 100;
+        energyPoints = 1000;
         weapons = new HashSet<>();
         this.name = name;
 
@@ -69,7 +70,12 @@ public class Player {
     }
 
     public void addWeapons(WeaponsInter weapon){
-        weapons.add(weapon);
+
+        if(weapon != null) {
+            weapons.add(weapon);
+            PlayerUtils.sendMessage(this,"You just got a "+weapon.getName());
+        }
+
     }
 
     public void looseWeapons(){

@@ -45,20 +45,21 @@ public abstract class AssaultAbstract implements Assault {
     public WeaponsInter weaponsRate(AssaultOptions assaultOption){
 
         double chanceGetWeapon = Math.ceil(Math.random()*100);
+        System.out.println(chanceGetWeapon);
 
-        if(chanceGetWeapon > 0 && assaultOption.getChanceGetLSaber() < chanceGetWeapon){
+        if(chanceGetWeapon > 0 && assaultOption.getChanceGetLSaber() >= chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
         }
 
-        if(chanceGetWeapon > assaultOption.getChanceGetLSaber() && assaultOption.getChanceGetShotgun() < chanceGetWeapon){
+        if(chanceGetWeapon > assaultOption.getChanceGetLSaber() && assaultOption.getChanceGetShotgun() >= chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.SHOTGUN);
         }
 
-        if(chanceGetWeapon > assaultOption.getChanceGetShotgun() && assaultOption.getChanceGetKnife() < chanceGetWeapon){
+        if(chanceGetWeapon > assaultOption.getChanceGetShotgun() && assaultOption.getChanceGetKnife() >= chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.KNIFE);
         }
 
-        if(chanceGetWeapon > assaultOption.getChanceGetKnife() && chanceGetWeapon < assaultOption.getChanceGetRDuck()){
+        if(chanceGetWeapon > assaultOption.getChanceGetKnife() && chanceGetWeapon <= assaultOption.getChanceGetRDuck()){
             return WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK);
         }
 
