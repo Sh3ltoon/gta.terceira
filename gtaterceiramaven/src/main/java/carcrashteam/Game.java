@@ -252,7 +252,7 @@ public class Game {
         }
 
         StringSetInputScanner scanner = new StringSetInputScanner(names);
-        scanner.setMessage(names.toString());
+        scanner.setMessage(names.toString()+"\n");
 
         String answer = prompt.getUserInput(scanner);
 

@@ -42,7 +42,7 @@ public class Messages {
             "                  |__/|__/\\___/_/\\___/\\____/_/ /_/ /_/\\___/   \\__/\\____/   \\____/ /_/ /_/  |_|    /_/ /_____/\\____/_/ /_/\\___/_/_/   \\__,_/                   \n" +
             "                                                                                                                                                              \n" +
             "You will have the chance to commit robbery to important targets, go out to some great places or attack other players, you chose.\n" +
-            "Insert your nickname:";
+            "Insert your nickname:\n";
 
     public static final String ROBBERY_RULE ="In case of success your Experience Points will increase and you might get a WEAPON! \n It will cost you Energy Points.\n Be careful thought, you might end up in Prison.";
     public static final String NIGHTLIFE_RULE = "If you're lucky, your Energy Points will increase. \n Otherwise, your Experience Points will decrement and you will end up in the Hospital healing.";

@@ -1,6 +1,10 @@
 package carcrashteam.server;
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerSetInputScanner;
+import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+import org.academiadecodigo.bootcamp.scanners.string.StringSetInputScanner;
 
 import java.io.*;
 import java.net.Socket;
@@ -13,12 +17,18 @@ public class Client implements Runnable {
     private BufferedReader serverReader;
     private InputStream inputStream;
     private Socket clientSocket;
-    private Prompt prompt;
+
 
     public static void main(String[] args) {
-
+        Prompt prompt = new Prompt(System.in,System.out);
         Client client = new Client();
-        client.init();
+        StringInputScanner ip = new StringInputScanner();
+        ip.setMessage("IP: ");
+        String ips = prompt.getUserInput(ip);
+        IntegerInputScanner port = new IntegerInputScanner();
+        port.setMessage("Port: ");
+        int ports = prompt.getUserInput(port);
+        client.init(ips,ports);
     }
 
     public void send() {
@@ -56,14 +66,15 @@ public class Client implements Runnable {
     }
 
 
-    public void init() {
+    public void init(String ips,Integer ports) {
 
         try {
 
-            clientSocket = new Socket("localhost", 8000);
+            clientSocket = new Socket(ips, ports);
             serverWriter = new PrintWriter(clientSocket.getOutputStream(), true);
             inputStream = clientSocket.getInputStream();
-            serverReader = new BufferedReader(new InputStreamReader(inputStream));
+
+
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.submit(this);
             send();
@@ -74,17 +85,16 @@ public class Client implements Runnable {
     }
 
 
+
     public void getMenu() {
 
-        String buffer = "gg";
+        char[]gg = new char[200];
 
         try {
-
-            while (clientSocket.isBound()) {
-
-                buffer = serverReader.readLine();
-                System.out.println(buffer);
-
+            serverReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = serverReader.readLine()) != null) {
+                System.out.println(line);
             }
             serverReader.close();
             System.out.println(clientSocket.isClosed());
@@ -100,7 +110,7 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
-        getMenu();
+            getMenu();
 
     }
 }
