@@ -80,6 +80,16 @@ public class Player {
         return weapons;
     }
 
+    public String[] getWeaponsName() {
+        String[] weaponsName = new String[weapons.size()];
+        int counter = 0;
+        for (WeaponsInter w: weapons) {
+            weaponsName[counter] = w.getName();
+            counter++;
+        }
+        return weaponsName;
+    }
+
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
