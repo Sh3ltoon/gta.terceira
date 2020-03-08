@@ -33,7 +33,6 @@ public abstract class AssaultAbstract implements Assault {
         }
 
         PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime()/1000 + " seconds");
-
         goToPrison(player, assaultOption.getSentenceTime());
         PlayerUtils.sendMessage(player,"+ " +assaultOption.getXpWon() + " XP");
 
@@ -83,8 +82,10 @@ public abstract class AssaultAbstract implements Assault {
     public void goToPrison(Player player, int sentenceTimer){
 
         try {
+            player.setJailed(true);
             Chronometer chronometer = new Chronometer();
             chronometer.timer(player, sentenceTimer);
+            player.setJailed(false);
         }catch (Exception e){
             System.out.println("Thread error: "+e);
         }

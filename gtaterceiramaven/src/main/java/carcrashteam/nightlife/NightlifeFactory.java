@@ -14,7 +14,7 @@ public class NightlifeFactory {
                 event =  new Weed();
                 break;
             case ClassicBar:
-                event = new ClasseicBar();
+                event = new ClassicBar();
                 break;
         }
         return event;

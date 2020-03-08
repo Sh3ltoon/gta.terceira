@@ -18,13 +18,14 @@ public abstract class NightLifeAbstract implements Nightlife{
             if(goodNight(nightLifeOption)) {
 
                 player.setEnergy(player.getEnergy() + nightLifeOption.getEnergyGain());
-                PlayerUtils.sendMessage(player,nightLifeOption.getLuckMessage());
-                PlayerUtils.sendMessage(player,"Energy:" + player.getEnergy());
+                PlayerUtils.sendMessage(player,nightLifeOption.getLuckMessage() + " " + player.getEnergy());
                 return;
 
             }
 
+            PlayerUtils.sendMessage(player,nightLifeOption.getNoLuckMessage() + AsciiImages.hospital);
             PlayerUtils.sendMessage(player,nightLifeOption.getNoLuckMessage() + " Wait 10 seconds");
+
             player.setExperience(player.getExperience() - nightLifeOption.getExperienceLoss());
             player.loseWeapons();
             goToHospital(player);
@@ -40,8 +41,10 @@ public abstract class NightLifeAbstract implements Nightlife{
     public void goToHospital(Player player){
 
         try {
+            player.setHospitalized(true);
             Chronometer chronometer = new Chronometer();
             chronometer.timer(player, 10000);
+            player.setHospitalized(false);
         }catch (Exception e){
             System.out.println("Thread error: "+e);
         }

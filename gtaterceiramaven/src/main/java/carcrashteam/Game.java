@@ -83,6 +83,7 @@ public class Game {
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
         scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira.\nGame Menu:");
+        scanner.setError("Invalid Input");
 
         int userChoice = prompt.getUserInput(scanner);
         try {
@@ -223,7 +224,7 @@ public class Game {
             if(target == null){
                 mainMenu(name);
             }
-            if (Checker.attackChecker(attacker, target)) {
+            if (Checker.attackChecker(attacker, target) && !target.isJailed() && !target.isHospitalized() ) {
 
                 if (target.getExperience() > attacker.getExperience()) {
                     winner = target;
