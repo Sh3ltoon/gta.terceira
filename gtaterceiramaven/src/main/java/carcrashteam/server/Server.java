@@ -48,13 +48,15 @@ public class Server {
         }
 
     }
-    public void askPlayerName(Game game){
-
-        if(game.createPlayer() == null){
-            askPlayerName(game);
-        }
+    public void askPlayerName(Game game, PrintStream printStream){
 
         playerLogged = game.createPlayer();
+
+        if(playerLogged == null){
+            printStream.println("This name is already taken. Please choose a different one.");
+            askPlayerName(game,printStream);
+        }
+
         game.getPlayerHashMap().put(playerLogged.getName(), playerLogged);
 
     }
@@ -99,7 +101,7 @@ public class Server {
             game = new Game(playersMap);
             game.init();
             game.setPrompt(new Prompt(inputStream, printStream));
-            askPlayerName(game);
+            askPlayerName(game,printStream);
             playerLogged.setSocket(playerSocket);
             game.getMap().put(playerLogged, playerSocket);
 

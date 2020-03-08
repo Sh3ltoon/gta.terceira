@@ -13,6 +13,7 @@ import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
 import carcrashteam.utilities.Checker;
 import carcrashteam.utilities.Messages;
+import carcrashteam.utilities.PlayerUtils;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -62,11 +63,12 @@ public class Game {
 
         String name = prompt.getUserInput(scanner);
 
-
-        if (existingNameChecker(name)) {
-
-            return null;
+        for(Player player : map.keySet()){
+            if(player.getName().equals(name)){
+                return null;
+            }
         }
+
         Player playerToCreate = new Player(name);
 
         playerHashMap.put(name, playerToCreate);
@@ -74,14 +76,6 @@ public class Game {
         return playerToCreate;
     }
 
-    public boolean existingNameChecker(String chosenName) {
-        for (String name : playerHashMap.keySet()) {
-            if (chosenName.equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void mainMenu(String name) {
 
@@ -146,7 +140,7 @@ public class Game {
 
     public void displayNightLife(MenuInputScanner nightLifeMenu, String name) {
 
-        int option =  prompt.getUserInput(nightLifeMenu);
+        int option = prompt.getUserInput(nightLifeMenu);
         NightLifeOptions nightLifeOption = null;
 
         for (NightLifeOptions nightEvent : NightLifeOptions.values()) {
@@ -161,7 +155,7 @@ public class Game {
     }
 
     public void hospital(String name) {
-            Player player = playerHashMap.get(name);
+        Player player = playerHashMap.get(name);
         try {
             PrintStream stream = new PrintStream(map.get(player).getOutputStream());
             stream.println(Messages.ENTERING_HOSPITAL);
@@ -267,7 +261,7 @@ public class Game {
         }
 
         StringSetInputScanner scanner = new StringSetInputScanner(names);
-        scanner.setMessage(names.toString()+"\n");
+        scanner.setMessage(names.toString() + "\n");
 
         String answer = prompt.getUserInput(scanner);
 
