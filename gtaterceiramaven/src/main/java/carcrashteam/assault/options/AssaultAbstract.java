@@ -8,18 +8,14 @@ import carcrashteam.assault.Assault;
 import carcrashteam.assault.AssaultOptions;
 import carcrashteam.utilities.*;
 
-import java.io.PrintStream;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public abstract class AssaultAbstract implements Assault {
 
 
-    public void successRate(Player player, AssaultOptions assaultOption){
+    public boolean successRate(Player player, AssaultOptions assaultOption){
 
         if(!Checker.assaultChecker(player,assaultOption.getEnergySpent())){
             PlayerUtils.sendMessage(player,"You don't have enough energy for this assault!");
-            return;
+            return false;
         }
 
         player.setEnergy(player.getEnergy() - assaultOption.getEnergySpent());
@@ -32,14 +28,16 @@ public abstract class AssaultAbstract implements Assault {
             PlayerUtils.sendMessage(player,"+ " +moneyWon + " money");
             PlayerUtils.sendMessage(player,"+ " +assaultOption.getXpWon() + " XP");
 
-            return;
+            return true;
 
         }
 
-        PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime() + " seconds");
+        PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime()/1000 + " seconds");
 
-        goToPrision(player, assaultOption.getSentenceTime());
+        goToPrison(player, assaultOption.getSentenceTime());
         PlayerUtils.sendMessage(player,"+ " +assaultOption.getXpWon() + " XP");
+
+        return false;
 
     }
 
@@ -82,7 +80,7 @@ public abstract class AssaultAbstract implements Assault {
         return money;
     }
 
-    public void goToPrision(Player player, int sentenceTimer){
+    public void goToPrison(Player player, int sentenceTimer){
 
         try {
             Chronometer chronometer = new Chronometer();

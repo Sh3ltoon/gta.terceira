@@ -10,7 +10,7 @@ public class Messages {
     public static final String SENT_PRISON = "You were sent to prison. Now you have to wait to be released.\n Waiting time: ";
     public static final String SUCCESS_ASSAULT = "Success! You manage to assault: ";
 
-    public static final String GO_DELMAN = "\nGet Drunk at Delman";
+    public static final String GO_DELMAN = "Get Drunk at Delman";
     public static final String DELMAN_WELCOME = "\nWelcome to Delman's.\nThe entry cost will be 30$.";
     public static final String DELMAN_NO_LUCK_MESSAGE = "\nYou got wasted and the Special Chicken toast was rotten! You were sent to the hospital!";
     public static final String DELMAN_NO_LUCK_STATUS = "\nYou lost 15 Experience Points, you now have ";
@@ -21,7 +21,7 @@ public class Messages {
     public static final String CLASSIC_BAR_NO_LUCK = "\nThat hooker was dirty as fuck! You got AIDS and you were sent to the Hospital!";
     public static final String CLASSIC_BAR_LUCK = "So good to get laid! Energy Points gained: ";
 
-    public static final String BUY_WEED ="\nGet some Weed In Santa Rita Guetto!";
+    public static final String BUY_WEED ="Get some Weed In Santa Rita Guetto!";
     public static final String WEED_WELCOME = "\nWelcome to Santa Rita guetto! We have the best Weed for you sir!\nThe cost will be 60$";
     public static final String WEED_NO_LUCK = "\nYou got a bad trip and you were sent to the Hospital!";
     public static final String WEED_LUCK = "\nWoot woot! Nice blunt! I'm Fliyng! Gained 50 Energy Points.\nYour Energy Points are now: ";

@@ -184,7 +184,7 @@ public class Game {
                 "\nMoney: " + player.getMoney() +
                 "\nHealth: " + player.getHealth() +
                 "\nEnergy: " + player.getEnergy() +
-                "\n Weapons: " + player.getWeapons());
+                "\nWeapons: " + player.getWeapons());
         mainMenu(name);
     }
 
@@ -216,7 +216,7 @@ public class Game {
             weaponsToBattle(target);
             weaponsToBattle(attacker);
             Player winner;
-            Player looser;
+            Player loser;
             if(attacker == null ){
                 mainMenu(name);
             }
@@ -227,25 +227,25 @@ public class Game {
 
                 if (target.getExperience() > attacker.getExperience()) {
                     winner = target;
-                    looser = attacker;
+                    loser = attacker;
 
                 } else {
                     winner = attacker;
-                    looser = target;
+                    loser = target;
 
                 }
-                looser.setHealth(0);
-                looser.looseWeapons();
-                winner.setExperience(winner.getExperience() + looser.getExperience() / 10);
-                looser.setExperience(looser.getExperience() - looser.getExperience() / 10);
-                int robMoney = looser.getMoney() / 3;
-                looser.setMoney(looser.getMoney() - robMoney);
+                loser.setHealth(0);
+                loser.loseWeapons();
+                winner.setExperience(winner.getExperience() + loser.getExperience() / 10);
+                loser.setExperience(loser.getExperience() - loser.getExperience() / 10);
+                int robMoney = loser.getMoney() / 3;
+                loser.setMoney(loser.getMoney() - robMoney);
                 winner.setMoney(winner.getMoney() + robMoney);
 
                 String looserMessage = "You were fucked up by " + winner.getName() + " , Took from you " + robMoney + "$.";
-                String winnerMessage = "You won the fight with " + looser.getName() + " , you take from him " + robMoney + "$.";
+                String winnerMessage = "You won the fight with " + loser.getName() + " , you take from him " + robMoney + "$.";
 
-                playerNotifier(winner, looser, looserMessage, winnerMessage);
+                playerNotifier(winner, loser, looserMessage, winnerMessage);
 
 
                 mainMenu(name);
@@ -256,7 +256,6 @@ public class Game {
 
             }
     }
-
 
     public Player getTarget(String name) {
 
@@ -281,39 +280,28 @@ public class Game {
 
     public Player getPlayer(String name) {
 
-
-            Player target = null;
+        Player target = null;
 
             for (Player p : map.keySet()) {
-
                 if (p.getName().equals(name)) {
                     target = p;
-
                 }
-
             }
 
         return target;
-
 
     }
 
     public void weaponsToBattle(Player player) {
 
         if(player == null){
-
             return;
         }
             Set<WeaponsInter> weapons = player.getWeapons();
 
             for (WeaponsInter weapon : weapons) {
-
                 player.setExperience(player.getExperience() + weapon.getDamage());
-
             }
-
-
-
 
     }
 

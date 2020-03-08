@@ -11,8 +11,8 @@ import carcrashteam.assault.Assault;
 
 public class GracaRestaurant extends AssaultAbstract {
 
-    public void successRate(Player player){
-        super.successRate(player, AssaultOptions.GRACA_RESTAURANT);
+    public boolean successRate(Player player){
+        return super.successRate(player, AssaultOptions.GRACA_RESTAURANT);
     }
 
     public WeaponsInter weaponsRate() {
@@ -21,7 +21,8 @@ public class GracaRestaurant extends AssaultAbstract {
 
     @Override
     public void execute(Player player) {
-        successRate(player);
-        player.addWeapons(weaponsRate());
+        if(successRate(player)) {
+            player.addWeapons(weaponsRate());
+        }
     }
 }

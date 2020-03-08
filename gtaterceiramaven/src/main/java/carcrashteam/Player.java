@@ -78,7 +78,7 @@ public class Player {
 
     }
 
-    public void looseWeapons(){
+    public void loseWeapons(){
         weapons.removeAll(weapons);
     }
 

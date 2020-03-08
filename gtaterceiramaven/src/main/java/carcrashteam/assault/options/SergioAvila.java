@@ -7,8 +7,8 @@ import carcrashteam.Weapons.WeaponsInter;
 
 public class SergioAvila extends AssaultAbstract {
 
-    public void successRate(Player player) {
-        super.successRate(player, AssaultOptions.SERGIO_AVILA);
+    public boolean successRate(Player player) {
+        return super.successRate(player, AssaultOptions.SERGIO_AVILA);
     }
 
     public WeaponsInter weaponsRate() {
@@ -19,7 +19,8 @@ public class SergioAvila extends AssaultAbstract {
 
     @Override
     public void execute(Player player) {
-        successRate(player);
-        player.addWeapons(weaponsRate());
+        if(successRate(player)) {
+            player.addWeapons(weaponsRate());
+        }
     }
 }
