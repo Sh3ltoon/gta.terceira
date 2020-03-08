@@ -50,8 +50,11 @@ public class Server {
     }
     public void askPlayerName(Game game){
 
+        if(game.createPlayer() == null){
+            askPlayerName(game);
+        }
 
-        playerLogged = game.createPlayer(); // check if the name isn't taken
+        playerLogged = game.createPlayer();
         game.getPlayerHashMap().put(playerLogged.getName(), playerLogged);
 
     }

@@ -11,8 +11,8 @@ import carcrashteam.menus.NightLifeMenu;
 import carcrashteam.nightlife.NightLifeOptions;
 import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
-import carcrashteam.utilities.Messages;
 import carcrashteam.utilities.Checker;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -57,17 +57,30 @@ public class Game {
 
     public Player createPlayer() {
 
-
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage(Messages.MAIN_MENU_RULE);
 
         String name = prompt.getUserInput(scanner);
+
+
+        if (existingNameChecker(name)) {
+
+            return null;
+        }
         Player playerToCreate = new Player(name);
 
         playerHashMap.put(name, playerToCreate);
 
         return playerToCreate;
+    }
 
+    public boolean existingNameChecker(String chosenName) {
+        for (String name : playerHashMap.keySet()) {
+            if (chosenName.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void mainMenu(String name) {
@@ -132,7 +145,8 @@ public class Game {
     }
 
     public void displayNightLife(MenuInputScanner nightLifeMenu, String name) {
-        int option = playerHashMap.get(name).getPrompt().getUserInput(nightLifeMenu);
+
+        int option =  prompt.getUserInput(nightLifeMenu);
         NightLifeOptions nightLifeOption = null;
 
         for (NightLifeOptions nightEvent : NightLifeOptions.values()) {
@@ -143,6 +157,7 @@ public class Game {
             }
         }
         nightLifeExecute(nightLifeOption, playerHashMap.get(name));
+        mainMenu(name);
     }
 
     public void hospital(String name) {
