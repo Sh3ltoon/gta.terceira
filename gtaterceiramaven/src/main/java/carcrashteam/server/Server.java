@@ -1,6 +1,7 @@
 package carcrashteam.server;
 import carcrashteam.Game;
 import carcrashteam.Player;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.Prompt;
 
 import java.io.*;
@@ -57,7 +58,7 @@ public class Server {
         playerLogged = game.createPlayer();
 
         if(playerLogged == null){
-            printStream.println("This name is already taken. Please choose a different one.");
+            printStream.println(Messages.EXISTING_NAME);
             askPlayerName(game,printStream);
         }
 

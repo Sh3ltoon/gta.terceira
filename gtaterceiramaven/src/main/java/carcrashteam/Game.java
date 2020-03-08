@@ -63,8 +63,8 @@ public class Game {
 
         String name = prompt.getUserInput(scanner);
 
-        for (Player player : map.keySet()) {
-            if (player.getName().equals(name)) {
+        for(Player player : map.keySet()){
+            if(player.getName().toUpperCase().equals(name.toUpperCase())){
                 return null;
             }
         }
@@ -82,7 +82,7 @@ public class Game {
         String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack", "Quit"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
-        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira. \n Game Menu:");
+        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira.\nGame Menu:");
 
         int userChoice = prompt.getUserInput(scanner);
         try {
@@ -95,9 +95,11 @@ public class Game {
     public void mainMenuChecker(Integer userChoice, String name) throws IOException {
         switch (userChoice) {
             case 1:
+                PlayerUtils.sendMessage(playerHashMap.get(name),Messages.ROBBERY_RULE);
                 displayAssault(new AssaultMenu().assaultMenu(), name);
                 break;
             case 2:
+                PlayerUtils.sendMessage(playerHashMap.get(name),Messages.NIGHTLIFE_RULE);
                 displayNightLife(new NightLifeMenu().nightLifeMenu(), name);
                 break;
             case 3:
@@ -105,7 +107,7 @@ public class Game {
                 break;
             case 4:
                 Continente continente = new Continente();
-                continente.startContinente(displayContinente(continente.continenteMenu(), name), playerHashMap.get(name));
+                continente.startContinente(displayContinente(continente.continenteMenu()), playerHashMap.get(name));
                 mainMenu(name);
                 break;
             case 5:
@@ -176,6 +178,7 @@ public class Game {
     public void displayStatus(String name) throws IOException {
         Player player = getPlayer(name);
         PrintStream status = new PrintStream(map.get(player).getOutputStream());
+        PlayerUtils.sendMessage(player,Messages.STATUS_RULE);
         status.println("Name: " + player.getName() + "\n" +
                 "Experience: " + player.getExperience() +
                 "\nMoney: " + player.getMoney() +
@@ -185,7 +188,7 @@ public class Game {
         mainMenu(name);
     }
 
-    public int displayContinente(MenuInputScanner continenteMenu, String name) {
+    public int displayContinente(MenuInputScanner continenteMenu) {
         return prompt.getUserInput(continenteMenu);
 
     }

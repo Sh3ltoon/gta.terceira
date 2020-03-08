@@ -7,7 +7,7 @@ import carcrashteam.utilities.Messages;
 public class Delman extends NightLifeAbstract {
     @Override
     public void execute(Player player) {
-        super.execute(player, NightLifeOptions.Weed);
+        super.execute(player, NightLifeOptions.Delman);
     }
 }
 
