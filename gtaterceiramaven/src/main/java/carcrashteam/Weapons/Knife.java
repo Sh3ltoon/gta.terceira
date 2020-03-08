@@ -24,4 +24,8 @@ public class Knife implements WeaponsInter {
     public int getPrice() {
         return PRICE;
     }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

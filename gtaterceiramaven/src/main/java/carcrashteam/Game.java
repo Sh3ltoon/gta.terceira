@@ -170,7 +170,7 @@ public class Game {
             mainMenu(name);
 
         } catch (IOException ed) {
-            ed.getMessage();
+            ed.printStackTrace();
         }
 
     }
@@ -211,47 +211,50 @@ public class Game {
 
     public void attack(String name) {
 
-        Player target = getTarget(name);
-        Player attacker = getPlayer(name);
-        weaponsToBattle(target);
-        weaponsToBattle(attacker);
-        Player winner;
-        Player looser;
+            Player target = getTarget(name);
+            Player attacker = getPlayer(name);
+            weaponsToBattle(target);
+            weaponsToBattle(attacker);
+            Player winner;
+            Player looser;
+            if(attacker == null ){
+                mainMenu(name);
+            }
+            if(target == null){
+                mainMenu(name);
+            }
+            if (Checker.attackChecker(attacker, target)) {
 
-        if (Checker.attackChecker(attacker, target)) {
+                if (target.getExperience() > attacker.getExperience()) {
+                    winner = target;
+                    looser = attacker;
 
-            if (target.getExperience() > attacker.getExperience()) {
-                winner = target;
-                looser = attacker;
+                } else {
+                    winner = attacker;
+                    looser = target;
 
+                }
+                looser.setHealth(0);
+                looser.looseWeapons();
+                winner.setExperience(winner.getExperience() + looser.getExperience() / 10);
+                looser.setExperience(looser.getExperience() - looser.getExperience() / 10);
+                int robMoney = looser.getMoney() / 3;
+                looser.setMoney(looser.getMoney() - robMoney);
+                winner.setMoney(winner.getMoney() + robMoney);
+
+                String looserMessage = "You were fucked up by " + winner.getName() + " , Took from you " + robMoney + "$.";
+                String winnerMessage = "You won the fight with " + looser.getName() + " , you take from him " + robMoney + "$.";
+
+                playerNotifier(winner, looser, looserMessage, winnerMessage);
+
+
+                mainMenu(name);
             } else {
-                winner = attacker;
-                looser = target;
+                String message = "You can't attack " + target.getName();
+                notifier(attacker, message);
+                mainMenu(name);
 
             }
-            looser.setHealth(0);
-            looser.looseWeapons();
-            winner.setExperience(winner.getExperience() + looser.getExperience() / 10);
-            looser.setExperience(looser.getExperience() - looser.getExperience() / 10);
-            int robMoney = looser.getMoney() / 3;
-            looser.setMoney(looser.getMoney() - robMoney);
-            winner.setMoney(winner.getMoney() + robMoney);
-
-            String looserMessage = "You were fucked up by " + winner.getName() + " , Took from you " + robMoney + "$.";
-            String winnerMessage = "You won the fight with " + looser.getName() + " , you take from him " + robMoney + "$.";
-
-            playerNotifier(winner, looser, looserMessage, winnerMessage);
-
-
-            mainMenu(name);
-        } else {
-            String message = "You can't attack " + target.getName();
-            notifier(attacker, message);
-            mainMenu(name);
-
-        }
-
-
     }
 
 
@@ -278,25 +281,38 @@ public class Game {
 
     public Player getPlayer(String name) {
 
-        Player target = null;
-        for (Player p : map.keySet()) {
-            if (p.getName().equals(name)) {
-                target = p;
+
+            Player target = null;
+
+            for (Player p : map.keySet()) {
+
+                if (p.getName().equals(name)) {
+                    target = p;
+
+                }
+
             }
-        }
+
         return target;
+
 
     }
 
     public void weaponsToBattle(Player player) {
 
-        Set<WeaponsInter> weapons = player.getWeapons();
+        if(player == null){
 
-        for (WeaponsInter weapon : weapons) {
-
-            player.setExperience(player.getExperience() + weapon.getDamage());
-
+            return;
         }
+            Set<WeaponsInter> weapons = player.getWeapons();
+
+            for (WeaponsInter weapon : weapons) {
+
+                player.setExperience(player.getExperience() + weapon.getDamage());
+
+            }
+
+
 
 
     }
@@ -313,6 +329,7 @@ public class Game {
 
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("hello");
         }
 
         p1Output.println(messageP1);
@@ -324,15 +341,18 @@ public class Game {
     public void notifier(Player player, String message) {
         PrintStream output = null;
 
+
         try {
 
             output = new PrintStream(map.get(player).getOutputStream(), true);
 
         } catch (IOException e) {
             e.printStackTrace();
+
         }
 
         output.println(message);
+
     }
 
     public void quit(String name) {
@@ -341,7 +361,7 @@ public class Game {
             map.get(getPlayer(name)).close();
             map.remove(getPlayer(name), map.get(getPlayer(name)));
         } catch (IOException ef) {
-            ef.getMessage();
+            ef.printStackTrace();
         }
 
 
