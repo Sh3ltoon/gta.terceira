@@ -1,10 +1,7 @@
 package carcrashteam.nightlife;
 
 import carcrashteam.Player;
-import carcrashteam.utilities.Checker;
-import carcrashteam.utilities.Messages;
-import carcrashteam.utilities.PlayerUtils;
-import carcrashteam.utilities.RandomNumber;
+import carcrashteam.utilities.*;
 
 
 public abstract class NightLifeAbstract implements Nightlife{
@@ -27,9 +24,10 @@ public abstract class NightLifeAbstract implements Nightlife{
 
             }
 
-            PlayerUtils.sendMessage(player,nightLifeOption.getNoLuckMessage());
+            PlayerUtils.sendMessage(player,nightLifeOption.getNoLuckMessage() + " Wait 10 seconds");
             player.setExperience(player.getExperience() - nightLifeOption.getExperienceLoss());
-            player.looseWeapons();
+            player.loseWeapons();
+            goToHospital(player);
 
     }
 
@@ -37,6 +35,16 @@ public abstract class NightLifeAbstract implements Nightlife{
 
         double luckyNumber = RandomNumber.getRandomNumberInRange(0,100);
         return luckyNumber > nightLifeOption.getSuccessRate();
+
+    }
+    public void goToHospital(Player player){
+
+        try {
+            Chronometer chronometer = new Chronometer();
+            chronometer.timer(player, 10000);
+        }catch (Exception e){
+            System.out.println("Thread error: "+e);
+        }
 
     }
 
