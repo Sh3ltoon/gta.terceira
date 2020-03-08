@@ -4,19 +4,19 @@ import carcrashteam.utilities.Messages;
 
 public enum AssaultOptions{
 
-    OLD_LADY ("Rob Old Lady", 1,3000, 3,
+    OLD_LADY (Messages.ROB_OLD_LADY, 1,3000, 3,
             15,6,3,1,
             0,40,50,2),
 
-    GRACA_RESTAURANT("Shoplift Graça Restaurant", 2,4000,5,
+    GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,4000,5,
             20,10,4,2,
              40,120,100,4),
 
-    AC ("Hijack <Academia de Código>", 3,5000,10,
+    AC (Messages.HIJACK_AC, 3,5000,10,
             25,12,6,3,
             120, 230,150,8),
 
-    SERGIO_AVILA ("Rob Sergio Avila's Wallet", 4, 7000,20,
+    SERGIO_AVILA (Messages.ROB_SERGIO_AVILA, 4, 7000,20,
             30,23,15,6,
             230,480,200,16);
 
@@ -94,6 +94,7 @@ public enum AssaultOptions{
     public int getMaxMoney() {
         return maxMoney;
     }
+
     public int getEnergySpent() {
         return energySpent;
     }

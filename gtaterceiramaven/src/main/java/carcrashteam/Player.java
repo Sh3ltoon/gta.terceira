@@ -13,7 +13,6 @@ public class Player {
     private int healthPoints;
     private int energyPoints;
     private int money;
-    private Prompt prompt;
     private Set<WeaponsInter> weapons;
     private Socket socket;
     private boolean jailed;
@@ -33,14 +32,6 @@ public class Player {
         return jailed;
     }
 
-    public Prompt getPrompt() {
-        return prompt;
-    }
-
-    public void setPrompt(Prompt prompt) {
-        this.prompt = prompt;
-    }
-
     public void setMoney(int money) {
         this.money = money;
     }
@@ -48,6 +39,7 @@ public class Player {
     public int getMoney() {
         return money;
     }
+
     public String getName() {
         return name;
     }
