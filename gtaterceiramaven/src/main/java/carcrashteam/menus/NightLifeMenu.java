@@ -2,6 +2,7 @@ package carcrashteam.menus;
 
 
 import carcrashteam.nightlife.NightLifeOptions;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
 public class NightLifeMenu {
@@ -18,7 +19,7 @@ public class NightLifeMenu {
 
     public MenuInputScanner nightLifeMenu(){
         MenuInputScanner nightLifeMenu = new MenuInputScanner(getNighLifeOptions());
-        nightLifeMenu.setMessage("Choose your robbery:");
+        nightLifeMenu.setMessage(Messages.WELCOME_NIGHTLIFE);
 
         return nightLifeMenu;
     }

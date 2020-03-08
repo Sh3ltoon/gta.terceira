@@ -269,12 +269,15 @@ public class Game {
             names.add(p.getName());
 
         }
+        names.add("Quit");
 
         StringSetInputScanner scanner = new StringSetInputScanner(names);
         scanner.setMessage(names.toString() + "\n");
 
         String answer = prompt.getUserInput(scanner);
-
+        if(answer.equals("Quit")){
+            mainMenu(name);
+        }
         return getPlayer(answer);
     }
 

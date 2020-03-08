@@ -36,7 +36,7 @@ public abstract class AssaultAbstract implements Assault {
 
         }
 
-        PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime() + " seconds");
+        PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime()/1000 + " seconds");
 
         goToPrision(player, assaultOption.getSentenceTime());
         PlayerUtils.sendMessage(player,"+ " +assaultOption.getXpWon() + " XP");
