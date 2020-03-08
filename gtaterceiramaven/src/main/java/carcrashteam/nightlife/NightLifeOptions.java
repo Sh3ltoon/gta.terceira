@@ -1,10 +1,12 @@
 package carcrashteam.nightlife;
 
+import carcrashteam.utilities.Messages;
+
 public enum NightLifeOptions {
 
-    Delman("Get Drunk at Delman", 1),
-    ClassicBar("Find some bitJS at Classic Bar", 2),
-    Weed ("Get some Weed In Santa Rita Guetto!", 3);
+    Delman(Messages.GO_DELMAN, 1),
+    ClassicBar(Messages.GO_CLASSIC_BAR, 2),
+    Weed (Messages.BUY_WEED, 3);
 
 
     private String description;

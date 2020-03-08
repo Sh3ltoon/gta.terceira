@@ -11,6 +11,7 @@ import carcrashteam.menus.NightLifeMenu;
 import carcrashteam.nightlife.NightLifeOptions;
 import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
+import carcrashteam.utilities.Messages;
 import carcrashteam.utilities.Checker;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
@@ -58,7 +59,7 @@ public class Game {
 
 
         StringInputScanner scanner = new StringInputScanner();
-        scanner.setMessage("Insert Your Nickname; \n");
+        scanner.setMessage(Messages.MAIN_MENU_RULE);
 
         String name = prompt.getUserInput(scanner);
         Player playerToCreate = new Player(name);
@@ -74,7 +75,7 @@ public class Game {
         String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
-        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira \n");
+        scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira. \n Game Menu:");
 
         int userChoice = prompt.getUserInput(scanner);
         try {
@@ -144,11 +145,11 @@ public class Game {
     }
 
     public void hospital(String name) {
-        System.out.println("Welcome to Praia da Vitoria Health Center! Here we will take good care of your wounds!");
+        System.out.println(Messages.ENTERING_HOSPITAL);
         Player player = playerHashMap.get(name);
         player.setHealth(200);
         player.setMoney(player.getMoney() - 200);
-        System.out.println("Your're healed, charged you 200$! Good luck avoid COVID-19!");
+        System.out.println(Messages.LEAVING_HOSPITAL);
     }
 
     public void displayStatus(String name) throws IOException {
@@ -159,7 +160,7 @@ public class Game {
                 "\nMoney: " + player.getMoney() +
                 "\nHealth: " + player.getHealth() +
                 "\nEnergy: " + player.getEnergy() +
-                "\n Weapons: " + player.getMoney());
+                "\n Weapons: " + player.getWeapons().toString());
         mainMenu(name);
     }
 
@@ -192,7 +193,7 @@ public class Game {
         Player winner;
         Player looser;
 
-        if(Checker.attackChecker(attacker,target)) {
+        if( Checker.attackChecker(attacker,target)) {
             if (target.getExperience() > attacker.getExperience()) {
                 winner = target;
                 looser = attacker;
