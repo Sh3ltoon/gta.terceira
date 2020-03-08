@@ -64,7 +64,7 @@ public class Game {
         String name = prompt.getUserInput(scanner);
 
         for(Player player : map.keySet()){
-            if(player.getName().equals(name)){
+            if(player.getName().toUpperCase().equals(name.toUpperCase())){
                 return null;
             }
         }
