@@ -145,7 +145,8 @@ public class Game {
     }
 
     public void displayNightLife(MenuInputScanner nightLifeMenu, String name) {
-        int option = playerHashMap.get(name).getPrompt().getUserInput(nightLifeMenu);
+
+        int option =  prompt.getUserInput(nightLifeMenu);
         NightLifeOptions nightLifeOption = null;
 
         for (NightLifeOptions nightEvent : NightLifeOptions.values()) {
@@ -156,6 +157,7 @@ public class Game {
             }
         }
         nightLifeExecute(nightLifeOption, playerHashMap.get(name));
+        mainMenu(name);
     }
 
     public void hospital(String name) {
