@@ -63,8 +63,8 @@ public class Game {
 
         String name = prompt.getUserInput(scanner);
 
-        for(Player player : map.keySet()){
-            if(player.getName().equals(name)){
+        for (Player player : map.keySet()) {
+            if (player.getName().equals(name)) {
                 return null;
             }
         }
@@ -79,7 +79,7 @@ public class Game {
 
     public void mainMenu(String name) {
 
-        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack"};
+        String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack", "Quit"};
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
         scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira. \n Game Menu:");
@@ -113,6 +113,9 @@ public class Game {
                 break;
             case 6:
                 attack(name);
+                break;
+            case 7:
+                quit(name);
                 break;
         }
     }
@@ -213,6 +216,7 @@ public class Game {
         Player looser;
 
         if (Checker.attackChecker(attacker, target)) {
+
             if (target.getExperience() > attacker.getExperience()) {
                 winner = target;
                 looser = attacker;
@@ -326,6 +330,18 @@ public class Game {
         }
 
         output.println(message);
+    }
+
+    public void quit(String name) {
+
+        try {
+            map.get(getPlayer(name)).close();
+            map.remove(getPlayer(name), map.get(getPlayer(name)));
+        } catch (IOException ef) {
+            ef.getMessage();
+        }
+
+
     }
 
 }

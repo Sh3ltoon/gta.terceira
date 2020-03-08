@@ -20,7 +20,7 @@ public class Client implements Runnable {
 
 
     public static void main(String[] args) {
-        Prompt prompt = new Prompt(System.in,System.out);
+        Prompt prompt = new Prompt(System.in, System.out);
         Client client = new Client();
         StringInputScanner ip = new StringInputScanner();
         ip.setMessage("IP: ");
@@ -28,7 +28,7 @@ public class Client implements Runnable {
         IntegerInputScanner port = new IntegerInputScanner();
         port.setMessage("Port: ");
         int ports = prompt.getUserInput(port);
-        client.init(ips,ports);
+        client.init(ips, ports);
     }
 
     public void send() {
@@ -37,27 +37,21 @@ public class Client implements Runnable {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             while (clientSocket.isBound()) {
+
                 String chat = reader.readLine();
-                if (chat != null) {
+                if (chat == null) {
+                    writer.close();
+                    reader.close();
+                    clientSocket.close();
+                    System.exit(1);
+                    return;
+                } else {
                     writer.write(chat);
                     writer.newLine();
                     writer.flush();
-                } else {
-                    writer.close();
-                    reader.close();
-                    clientSocket.close();
-                }
-                if (chat.equals("/quit")) {
-                    writer.close();
-                    reader.close();
-                    clientSocket.close();
-                    return;
                 }
             }
-            writer.close();
-            reader.close();
-            clientSocket.close();
-            System.out.println(clientSocket.isClosed());
+
 
         } catch (IOException ex) {
             ex.getMessage();
@@ -66,7 +60,7 @@ public class Client implements Runnable {
     }
 
 
-    public void init(String ips,Integer ports) {
+    public void init(String ips, Integer ports) {
 
         try {
 
@@ -85,23 +79,25 @@ public class Client implements Runnable {
     }
 
 
-
     public void getMenu() {
 
-        char[]gg = new char[200];
 
         try {
             serverReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = serverReader.readLine()) != null) {
-                System.out.println(line);
+            while (true) {
+                String line = serverReader.readLine();
+                if (line != null) {
+                    System.out.println(line);
+                } else {
+                    clientSocket.close();
+                    System.out.println(clientSocket.isBound());
+                    System.exit(1);
+                }
             }
-            serverReader.close();
-            System.out.println(clientSocket.isClosed());
-            clientSocket.close();
+
 
         } catch (Exception e) {
-            System.out.println("error:" + e);
+            System.out.println("error:1" + e);
         }
 
 
@@ -110,7 +106,8 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        if (clientSocket.isBound()) {
             getMenu();
-
+        }
     }
 }

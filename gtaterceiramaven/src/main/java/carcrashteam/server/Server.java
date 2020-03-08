@@ -6,13 +6,14 @@ import org.academiadecodigo.bootcamp.Prompt;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public class Server {
 
-
+    private Socket clientSocket;
     private ServerSocket server;
     public static Map<Player,Socket > playersMap;
     private ExecutorService executorService;
@@ -35,13 +36,16 @@ public class Server {
     public void startServer(){
 
         try {
+
             while(true) {
 
                 System.out.println("<<< Waiting for connection >>>");
-                Socket clientSocket = server.accept();
+                clientSocket = server.accept();
                 PlayerThread playerThread = new PlayerThread();
                 playerThread.setSocket(clientSocket);
                 executorService.submit(playerThread);
+
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +70,14 @@ public class Server {
         game.mainMenu(playerLogged.getName());
 
     }
+
+
+
+
+
+
+
+
     public void close(){
         try{
 
@@ -75,6 +87,11 @@ public class Server {
             System.out.println("Error: " +e);
         }
     }
+
+
+
+
+
     public class PlayerThread implements Runnable{
 
         Socket playerSocket;
@@ -90,23 +107,33 @@ public class Server {
         }
 
         public void run() {
-
             try {
-                System.out.println("\n --- Connection accepted ---");
-                inputStream = playerSocket.getInputStream();
-                printStream = new PrintStream(playerSocket.getOutputStream());
-            }catch (Exception e){
-                System.out.println(e);
-            }
-            game = new Game(playersMap);
-            game.init();
-            game.setPrompt(new Prompt(inputStream, printStream));
-            askPlayerName(game,printStream);
-            playerLogged.setSocket(playerSocket);
-            game.getMap().put(playerLogged, playerSocket);
 
-            servePlayer(game);
+                if (playerSocket.isBound()) {
+
+                    System.out.println("\n --- Connection accepted ---");
+                    inputStream = playerSocket.getInputStream();
+                    printStream = new PrintStream(playerSocket.getOutputStream());
+
+                    game = new Game(playersMap);
+                    game.init();
+                    game.setPrompt(new Prompt(inputStream, printStream));
+                    askPlayerName(game, printStream);
+                    playerLogged.setSocket(playerSocket);
+
+                    game.getMap().put(playerLogged, playerSocket);
+                    servePlayer(game);
+                }
+
+            }
+            catch(Exception e){
+            System.out.println(e);
+        }
 
         }
+
+
+
+
     }
 }
