@@ -11,8 +11,8 @@ import carcrashteam.menus.NightLifeMenu;
 import carcrashteam.nightlife.NightLifeOptions;
 import carcrashteam.nightlife.Nightlife;
 import carcrashteam.nightlife.NightlifeFactory;
-import carcrashteam.utilities.Messages;
 import carcrashteam.utilities.Checker;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
@@ -57,17 +57,30 @@ public class Game {
 
     public Player createPlayer() {
 
-
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage(Messages.MAIN_MENU_RULE);
 
         String name = prompt.getUserInput(scanner);
+
+
+        if (existingNameChecker(name)) {
+
+            return null;
+        }
         Player playerToCreate = new Player(name);
 
         playerHashMap.put(name, playerToCreate);
 
         return playerToCreate;
+    }
 
+    public boolean existingNameChecker(String chosenName) {
+        for (String name : playerHashMap.keySet()) {
+            if (chosenName.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void mainMenu(String name) {
@@ -113,7 +126,7 @@ public class Game {
 
     public void displayAssault(MenuInputScanner assaultMenu, String name) {
 
-        int option =  prompt.getUserInput(assaultMenu);
+        int option = prompt.getUserInput(assaultMenu);
 
         AssaultOptions assaultOption = null;
 
@@ -196,7 +209,7 @@ public class Game {
         Player winner;
         Player looser;
 
-        if( Checker.attackChecker(attacker,target)) {
+        if (Checker.attackChecker(attacker, target)) {
             if (target.getExperience() > attacker.getExperience()) {
                 winner = target;
                 looser = attacker;
@@ -221,14 +234,12 @@ public class Game {
 
 
             mainMenu(name);
-        }else{
+        } else {
             String message = "You can't attack " + target.getName();
             notifier(attacker, message);
             mainMenu(name);
 
         }
-
-
 
 
     }
@@ -298,10 +309,9 @@ public class Game {
         p2Output.println(messageP2);
 
 
-
     }
 
-    public void notifier(Player player, String message){
+    public void notifier(Player player, String message) {
         PrintStream output = null;
 
         try {

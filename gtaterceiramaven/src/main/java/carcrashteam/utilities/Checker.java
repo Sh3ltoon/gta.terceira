@@ -3,6 +3,8 @@ package carcrashteam.utilities;
 import carcrashteam.Player;
 import carcrashteam.server.Server;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class Checker {
