@@ -6,11 +6,11 @@ public enum AssaultOptions{
 
     OLD_LADY (Messages.ROB_OLD_LADY, 1,3000, 0.7,
             15,6,3,1,
-            0,40,50,2),
+            0,40,25,2),
 
     GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,4000,0.6,
             20,10,4,2,
-             40,120,100,4),
+             40,120,75,4),
 
     AC (Messages.HIJACK_AC, 3,5000,0.45,
             25,12,6,3,

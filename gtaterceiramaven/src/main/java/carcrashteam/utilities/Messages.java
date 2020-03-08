@@ -46,13 +46,46 @@ public class Messages {
     public static final String EXISTING_NAME ="\nThis name is already taken. Please choose a different one.";
     public static final String ROBBERY_RULE ="\nYou will gain Experience Points for each robbery but it will cost you Energy Points.\nIn case of success you will earn money and if you're lucky you might win a weapon for your arsenal!\nBe careful thought, you might end up in prison.";
     public static final String NIGHTLIFE_RULE = "\nAll have an entry cost.\nIf you're lucky, your Energy Points will increase.\nOtherwise, your Experience Points will decrement and you will end up in the hospital.";
-    public static final String CONTINENTE_RULE = "\nBuy the weapons you were not able to win during the robbery.\nCheck if you have enough money though.";
-    public static final String STATUS_RULE = "\nHere is your information:";
+    public static final String CONTINENTE_RULE = "   ______            __  _                  __     \n" +
+            "  / ____/___  ____  / /_(_)___  ___  ____  / /____ \n" +
+            " / /   / __ \\/ __ \\/ __/ / __ \\/ _ \\/ __ \\/ __/ _ \\\n" +
+            "/ /___/ /_/ / / / / /_/ / / / /  __/ / / / /_/  __/\n" +
+            "\\____/\\____/_/ /_/\\__/_/_/ /_/\\___/_/ /_/\\__/\\___/ " +
+            "Buy the weapons you were not able to win during the robbery.\nCheck if you have enough money though.\n";
     public static final String NOT_ENOUGH_MONEY = "\nYou dont't have enough money to buy this item.";
+    public static final String STATUS_RULE = "    ____  __                     \n" +
+            "   / __ \\/ /___ ___  _____  _____\n" +
+            "  / /_/ / / __ `/ / / / _ \\/ ___/\n" +
+            " / ____/ / /_/ / /_/ /  __/ /    \n" +
+            "/_/   /_/\\__,_/\\__, /\\___/_/     \n" +
+            "              /____/             \n";
     public static final String WELCOME_NIGHTLIFE =
-            "    _   ______________  ____    ________________\n" +
-            "   / | / /  _/ ____/ / / / /   /  _/ ____/ ____/\n" +
-            "  /  |/ // // / __/ /_/ / /    / // /_  / __/   \n" +
-                    " / /|  // // /_/ / __  / /____/ // __/ / /___ \n" +
-                    "/_/ |_/___/\\____/_/ /_/_____/___/_/   /_____/   \n ";
+                    "    _   ___       __    __  __    _ ____   \n" +
+                    "   / | / (_)___ _/ /_  / /_/ /   (_) __/__ \n" +
+                    "  /  |/ / / __ `/ __ \\/ __/ /   / / /_/ _ \\\n" +
+                            " / /|  / / /_/ / / / / /_/ /___/ / __/  __/\n" +
+                            "/_/ |_/_/\\__, /_/ /_/\\__/_____/_/_/  \\___/ \n" +
+                            "        /____/                             \n";
+
+    public static final String HOSPITAL =
+            "    __  ______  _____ ____  _____________    __ \n" +
+                    "   / / / / __ \\/ ___// __ \\/  _/_  __/   |  / / \n" +
+                    "  / /_/ / / / /\\__ \\/ /_/ // /  / / / /| | / /  \n" +
+                    " / __  / /_/ /___/ / ____// /  / / / ___ |/ /___\n" +
+                    "/_/ /_/\\____//____/_/   /___/ /_/ /_/  |_/_____/\n";
+
+    public static final String ROBBERY =
+            "    ___   __________ ___   __  ____    __ \n" +
+                    "   /   | / ___/ ___//   | / / / / /   / /_\n" +
+                    "  / /| | \\__ \\\\__ \\/ /| |/ / / / /   / __/\n" +
+                    " / ___ |___/ /__/ / ___ / /_/ / /___/ /_  \n" +
+                    "/_/  |_/____/____/_/  |_\\____/_____/\\__/  \n";
+
+    public static final String Attack = "    _______       __    __ \n" +
+            "   / ____(_)___ _/ /_  / /_\n" +
+            "  / /_  / / __ `/ __ \\/ __/\n" +
+            " / __/ / / /_/ / / / / /_  \n" +
+            "/_/   /_/\\__, /_/ /_/\\__/  \n" +
+            "        /____/             ";
+
 }

@@ -70,7 +70,7 @@ public abstract class AssaultAbstract implements Assault {
     private boolean assaultSuccessful(Player player,AssaultOptions assaultOption){
 
         double successProbability = Math.random() * player.getExperience();
-        return successProbability >= assaultOption.getSuccessProbability()*player.getExperience();
+        return successProbability <= assaultOption.getSuccessProbability()*player.getExperience();
 
     }
 

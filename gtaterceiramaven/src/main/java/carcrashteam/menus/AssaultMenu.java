@@ -1,6 +1,7 @@
 package carcrashteam.menus;
 
 import carcrashteam.assault.AssaultOptions;
+import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
 public class AssaultMenu {
@@ -18,7 +19,7 @@ public class AssaultMenu {
 
     public MenuInputScanner assaultMenu(){
         MenuInputScanner assaultMenu = new MenuInputScanner(getAssaultOptions());
-        assaultMenu.setMessage("Choose your robbery:");
+        assaultMenu.setMessage(Messages.ROBBERY);
 
         return assaultMenu;
 

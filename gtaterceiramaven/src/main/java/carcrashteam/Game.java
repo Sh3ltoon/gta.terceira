@@ -163,7 +163,7 @@ public class Game {
         Player player = playerHashMap.get(name);
         try {
             PrintStream stream = new PrintStream(map.get(player).getOutputStream());
-            stream.println(Messages.ENTERING_HOSPITAL);
+            stream.println(Messages.HOSPITAL);
             player.setHealth(200);
             player.setMoney(player.getMoney() - 200);
             stream.println(Messages.LEAVING_HOSPITAL);
@@ -223,6 +223,8 @@ public class Game {
             if(target == null){
                 mainMenu(name);
             }
+
+            notifier(attacker, Messages.Attack);
             if (Checker.attackChecker(attacker, target)) {
 
                 if (target.getExperience() > attacker.getExperience()) {
