@@ -4,26 +4,26 @@ import carcrashteam.utilities.Messages;
 
 public enum AssaultOptions{
 
-    OLD_LADY (Messages.ROB_OLD_LADY, 1,3000, 3,
+    OLD_LADY (Messages.ROB_OLD_LADY, 1,3000, 0.7,
             15,6,3,1,
             0,40,50,2),
 
-    GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,4000,5,
+    GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,4000,0.6,
             20,10,4,2,
              40,120,100,4),
 
-    AC (Messages.HIJACK_AC, 3,5000,10,
+    AC (Messages.HIJACK_AC, 3,5000,0.45,
             25,12,6,3,
             120, 230,150,8),
 
-    SERGIO_AVILA (Messages.ROB_SERGIO_AVILA, 4, 7000,20,
+    SERGIO_AVILA (Messages.ROB_SERGIO_AVILA, 4, 7000,0.3,
             30,23,15,6,
             230,480,200,16);
 
     private String description;
     private int option;
     private int sentenceTime;
-    private int successProbability;
+    private double successProbability;
 
     private int chanceGetRDuck;
     private int chanceGetKnife;
@@ -35,7 +35,7 @@ public enum AssaultOptions{
     private int energySpent;
     private double xpWon;
 
-    AssaultOptions(String s, int i, int sentenceTime, int successProbability,
+    AssaultOptions(String s, int i, int sentenceTime, double successProbability,
                    int chanceGetRDuck, int chanceGetKnife, int chanceGetShotgun, int chanceGetLSaber,
                    int minMoney,int maxMoney, int energySpent, double xpWon) {
 
@@ -67,7 +67,7 @@ public enum AssaultOptions{
         return sentenceTime;
     }
 
-    public int getSuccessProbability() {
+    public double getSuccessProbability() {
         return successProbability;
     }
 

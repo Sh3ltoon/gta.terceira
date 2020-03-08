@@ -21,9 +21,9 @@ public class Player {
     public Player(String name) {
 
         money = 1000;
-        experience = 300; // 5
+        experience = 5;
         healthPoints = 100;
-        energyPoints = 1000;
+        energyPoints = 100;
         weapons = new HashSet<>();
         this.name = name;
 

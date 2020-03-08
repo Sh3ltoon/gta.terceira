@@ -46,7 +46,7 @@ public abstract class AssaultAbstract implements Assault {
     public WeaponsInter weaponsRate(AssaultOptions assaultOption){
 
         double chanceGetWeapon = Math.ceil(Math.random()*100);
-        System.out.println(chanceGetWeapon);
+        //System.out.println(chanceGetWeapon);
 
         if(chanceGetWeapon > 0 && assaultOption.getChanceGetLSaber() >= chanceGetWeapon){
             return WeaponsFactory.createWeapon(Weapons.LIGHT_SABER);
@@ -72,7 +72,8 @@ public abstract class AssaultAbstract implements Assault {
     private boolean assaultSuccessful(Player player,AssaultOptions assaultOption){
 
         double successProbability = Math.random() * player.getExperience();
-        return successProbability >= assaultOption.getSuccessProbability();
+        return successProbability >= assaultOption.getSuccessProbability()*player.getExperience();
+
     }
 
     public int givePlayerMoney(Player player, AssaultOptions assaultOptions){
@@ -86,7 +87,6 @@ public abstract class AssaultAbstract implements Assault {
         try {
             Chronometer chronometer = new Chronometer();
             chronometer.timer(player, sentenceTimer);
-            Thread.sleep(sentenceTimer);
         }catch (Exception e){
             System.out.println("Thread error: "+e);
         }
