@@ -7,7 +7,7 @@ import carcrashteam.assault.options.AssaultAbstract;
 
 public interface Assault {
 
-    void successRate(Player player, AssaultOptions assaultOptions);
+    boolean successRate(Player player, AssaultOptions assaultOptions);
 
     WeaponsInter weaponsRate(AssaultOptions assaultOption);
 

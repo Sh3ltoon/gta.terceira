@@ -10,8 +10,8 @@ import carcrashteam.assault.Assault;
 
 public class AC extends AssaultAbstract {
 
-    public void successRate(Player player) {
-        super.successRate(player, AssaultOptions.AC);
+    public boolean successRate(Player player) {
+       return super.successRate(player, AssaultOptions.AC);
     }
 
     public WeaponsInter weaponsRate() {
@@ -20,7 +20,8 @@ public class AC extends AssaultAbstract {
 
     @Override
     public void execute(Player player) {
-        successRate(player);
-        player.addWeapons(weaponsRate());
+        if(successRate(player)) {
+            player.addWeapons(weaponsRate());
+        }
     }
 }

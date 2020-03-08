@@ -14,8 +14,8 @@ import java.io.PrintStream;
 
 public class OldLady extends AssaultAbstract {
 
-    public void successRate(Player player) {
-        super.successRate(player, AssaultOptions.OLD_LADY);
+    public boolean successRate(Player player) {
+       return super.successRate(player, AssaultOptions.OLD_LADY);
     }
 
     public WeaponsInter weaponsRate() {
@@ -24,7 +24,8 @@ public class OldLady extends AssaultAbstract {
 
     @Override
     public void execute(Player player) {
-        successRate(player);
-        player.addWeapons(weaponsRate());
+        if(successRate(player)) {
+            player.addWeapons(weaponsRate());
+        }
     }
 }
