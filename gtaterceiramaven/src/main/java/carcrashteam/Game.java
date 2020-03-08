@@ -76,7 +76,6 @@ public class Game {
         return playerToCreate;
     }
 
-
     public void mainMenu(String name) {
 
         String[] mainOptions = {"Robbery", "NightLife", "Hospital", "Continente", "Status", "Attack", "Quit"};

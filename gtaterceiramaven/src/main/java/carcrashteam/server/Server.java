@@ -1,26 +1,28 @@
 package carcrashteam.server;
+
 import carcrashteam.Game;
 import carcrashteam.Player;
 import carcrashteam.utilities.Messages;
 import org.academiadecodigo.bootcamp.Prompt;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 public class Server {
 
+    public static Map<Player, Socket> playersMap;
     private Socket clientSocket;
     private ServerSocket server;
-    public static Map<Player,Socket > playersMap;
     private ExecutorService executorService;
     private Player playerLogged;
 
-    public void init(){
+    public void init() {
 
         try {
 
@@ -29,16 +31,17 @@ public class Server {
             playersMap = new HashMap<>();
             startServer();
 
-        }catch (Exception e){
-            System.out.println("ERROR: " +e);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
         }
 
     }
-    public void startServer(){
+
+    public void startServer() {
 
         try {
 
-            while(true) {
+            while (server.isBound()) {
 
                 System.out.println("<<< Waiting for connection >>>");
                 clientSocket = server.accept();
@@ -46,54 +49,45 @@ public class Server {
                 playerThread.setSocket(clientSocket);
                 executorService.submit(playerThread);
 
-
             }
+            close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    public void askPlayerName(Game game, PrintStream printStream){
+
+    public void askPlayerName(Game game, PrintStream printStream) {
 
         playerLogged = game.createPlayer();
 
-        if(playerLogged == null){
+        if (playerLogged == null) {
             printStream.println(Messages.EXISTING_NAME);
-            askPlayerName(game,printStream);
+            askPlayerName(game, printStream);
         }
 
         game.getPlayerHashMap().put(playerLogged.getName(), playerLogged);
 
     }
-    public void servePlayer(Game game){
 
+    public void servePlayer(Game game) {
 
         game.mainMenu(playerLogged.getName());
-
     }
 
+    public void close() {
 
-
-
-
-
-
-
-    public void close(){
-        try{
-
+        try {
             server.close();
-
-        }catch(Exception e){
-            System.out.println("Error: " +e);
+            clientSocket.close();
+            System.exit(0);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
+
     }
 
-
-
-
-
-    public class PlayerThread implements Runnable{
+    public class PlayerThread implements Runnable {
 
         Socket playerSocket;
         InputStream inputStream;
@@ -101,13 +95,12 @@ public class Server {
         Game game;
 
 
-        public void setSocket(Socket playerSocket){
+        public void setSocket(Socket playerSocket) {
             this.playerSocket = playerSocket;
-
-
         }
 
         public void run() {
+
             try {
 
                 if (playerSocket.isBound()) {
@@ -126,15 +119,11 @@ public class Server {
                     servePlayer(game);
                 }
 
+            } catch (Exception e) {
+                System.out.println(e);
             }
-            catch(Exception e){
-            System.out.println(e);
-        }
 
         }
-
-
-
 
     }
 }

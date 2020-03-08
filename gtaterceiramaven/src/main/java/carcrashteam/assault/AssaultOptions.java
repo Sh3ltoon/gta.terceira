@@ -4,11 +4,11 @@ import carcrashteam.utilities.Messages;
 
 public enum AssaultOptions{
 
-    OLD_LADY (Messages.ROB_OLD_LADY, 1,3000, 0.7,
+    OLD_LADY (Messages.ROB_OLD_LADY, 1,10000, 0.7,
             15,6,3,1,
             0,40,25,2),
 
-    GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,4000,0.6,
+    GRACA_RESTAURANT(Messages.SHOPLIFT_GRACA_RESTAURANT, 2,15000,0.6,
             20,10,4,2,
              40,120,75,4),
 
@@ -16,7 +16,7 @@ public enum AssaultOptions{
             25,12,6,3,
             120, 230,150,8),
 
-    SERGIO_AVILA (Messages.ROB_SERGIO_AVILA, 4, 7000,0.3,
+    SERGIO_AVILA (Messages.ROB_SERGIO_AVILA, 4, 20000,0.3,
             30,23,15,6,
             230,480,200,16);
 

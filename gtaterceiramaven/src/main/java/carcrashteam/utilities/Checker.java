@@ -16,7 +16,7 @@ public class Checker {
         return true;
     }
     public static boolean attackChecker(Player attacker, Player player){
-        if(attacker.getHealth()==0 || attacker.getEnergy()==0 || player.getHealth()==0 || player.isJailed()){
+        if(attacker.getHealth()==0 || attacker.getEnergy()==0 || player.getHealth()==0 || player.isJailed() || player.isHospitalized()){
             return false;
         }
         return true;
