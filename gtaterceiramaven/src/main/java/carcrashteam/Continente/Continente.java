@@ -40,53 +40,44 @@ public class Continente {
         switch (userChoice) {
             case 1:
 
-                if(Checker.continenteChecker(player,500)){
+                if(!Checker.continenteChecker(player,1300)){
                   notEnoughMoney(player);
                    return;
                 }
 
-                if(!Checker.continenteChecker(player,500)){
-                    break;
-                }
-                player.addWeapons( WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK));
-                player.setMoney(player.getMoney()-500);
+                player.addWeapons(WeaponsFactory.createWeapon(Weapons.KNIFE));
+                player.setMoney(player.getMoney()-1300) ;
+
                 break;
             case 2:
 
-                if(Checker.continenteChecker(player,1300)){
+                if(!Checker.continenteChecker(player,5000)){
                     notEnoughMoney(player);
                     return;
                 }
 
-                if(!Checker.continenteChecker(player,1300)){
-                    break;
-                }
-                player.addWeapons(WeaponsFactory.createWeapon(Weapons.KNIFE));
-                player.setMoney(player.getMoney()-1300);
+
+                player.addWeapons( WeaponsFactory.createWeapon(Weapons.SHOTGUN));
+                player.setMoney(player.getMoney() - 5000);
                 break;
             case 3:
 
-                if(Checker.continenteChecker(player,4500)){
+                if(!Checker.continenteChecker(player,500)){
                     notEnoughMoney(player);
                     return;
                 }
+                player.addWeapons( WeaponsFactory.createWeapon(Weapons.RUBBER_DUCK));
+                player.setMoney(player.getMoney()-500);
 
-                if(!Checker.continenteChecker(player,5000)){
-                    break;
-                }
-                player.addWeapons(WeaponsFactory.createWeapon(Weapons.LIGHT_SABER));
-                player.setMoney(player.getMoney() - 5000);
                 break;
             case 4:
 
-                if (Checker.continenteChecker(player,5000)){
+                if (!Checker.continenteChecker(player,4500)){
                     notEnoughMoney(player);
                     return;
                 }
-                if(!Checker.continenteChecker(player,2500)){
-                    break;
-                }
-                player.addWeapons( WeaponsFactory.createWeapon(Weapons.SHOTGUN));
+
+                player.addWeapons(WeaponsFactory.createWeapon(Weapons.LIGHT_SABER));
                 player.setMoney(player.getMoney() - 4500);
                 break;
         }

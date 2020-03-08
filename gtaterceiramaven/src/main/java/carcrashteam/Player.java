@@ -20,7 +20,7 @@ public class Player {
 
     public Player(String name) {
 
-        money = 100;
+        money = 1000;
         experience = 5;
         healthPoints = 200;
         energyPoints = 200;

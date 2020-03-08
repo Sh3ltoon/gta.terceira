@@ -39,11 +39,6 @@ public class Checker {
 
 
 
-    public static boolean continenteChecker(Player player, int cost){
-        if(player.getMoney() < cost){
-            return false;
-        }
-        return true;
-    }
+
 
 }
