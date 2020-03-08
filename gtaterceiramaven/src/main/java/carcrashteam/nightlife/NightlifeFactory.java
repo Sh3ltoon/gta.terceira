@@ -8,11 +8,15 @@ public class NightlifeFactory {
 
         switch (option){
             case Delman:
-                return  new Delman();
+                event = new Delman();
+                break;
             case Weed:
-                return new Weed();
-            default:
-                return new ClasseicBar();
+                event =  new Weed();
+                break;
+            case ClassicBar:
+                event = new ClasseicBar();
+                break;
         }
+        return event;
     }
 }

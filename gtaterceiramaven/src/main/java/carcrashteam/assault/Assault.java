@@ -9,7 +9,7 @@ public interface Assault {
 
     void successRate(Player player, AssaultOptions assaultOptions);
 
-    WeaponsInter weaponsRate();
+    WeaponsInter weaponsRate(AssaultOptions assaultOption);
 
     void execute(Player player);
 }

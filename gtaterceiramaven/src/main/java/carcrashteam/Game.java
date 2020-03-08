@@ -162,7 +162,7 @@ public class Game {
                 "\nMoney: " + player.getMoney() +
                 "\nHealth: " + player.getHealth() +
                 "\nEnergy: " + player.getEnergy() +
-                "\n Weapons: " + player.getMoney());
+                "\n Weapons: " + player.getWeapons().toString());
         mainMenu(name);
     }
 
@@ -196,7 +196,7 @@ public class Game {
         Player winner;
         Player looser;
 
-        if( Checker.assaultChecker(attacker,target)) {
+        if( Checker.attackChecker(attacker,target)) {
             if (target.getExperience() > attacker.getExperience()) {
                 winner = target;
                 looser = attacker;
