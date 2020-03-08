@@ -99,6 +99,7 @@ public class Game {
             case 4:
                 Continente continente = new Continente();
                 continente.startContinente(displayContinente(continente.continenteMenu(), name), playerHashMap.get(name));
+                mainMenu(name);
                 break;
             case 5:
                 displayStatus(name);
@@ -150,6 +151,7 @@ public class Game {
         player.setHealth(200);
         player.setMoney(player.getMoney() - 200);
         System.out.println(Messages.LEAVING_HOSPITAL);
+        mainMenu(name);
     }
 
     public void displayStatus(String name) throws IOException {
@@ -166,6 +168,7 @@ public class Game {
 
     public int displayContinente(MenuInputScanner continenteMenu, String name) {
         return prompt.getUserInput(continenteMenu);
+
     }
 
 

@@ -37,4 +37,5 @@ public class Messages {
     //public static final String HOSPITAL_RULE = "Your Health Points will be restored. It will cost you 200 $";
     public static final String CONTINENTE_RULE = "Buy the WEAPONS you were not able to win during the Robbery.";
     public static final String STATUS_RULE = "Here is your information:";
+    public static final String NOT_ENOUGH_MONEY = "You dont't have enough money tto buy this item";
 }
