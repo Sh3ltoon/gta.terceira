@@ -83,6 +83,7 @@ public class Game {
 
         MenuInputScanner scanner = new MenuInputScanner(mainOptions);
         scanner.setMessage("Welcome " + name + " to Grand Theft Auto Techeira.\nGame Menu:");
+        scanner.setError("Invalid Input");
 
         int userChoice = prompt.getUserInput(scanner);
         try {
@@ -163,7 +164,7 @@ public class Game {
         Player player = playerHashMap.get(name);
         try {
             PrintStream stream = new PrintStream(map.get(player).getOutputStream());
-            stream.println(Messages.HOSPITAL);
+            stream.println(Messages.ENTERING_HOSPITAL);
             player.setHealth(200);
             player.setMoney(player.getMoney() - 200);
             stream.println(Messages.LEAVING_HOSPITAL);

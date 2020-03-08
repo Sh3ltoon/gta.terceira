@@ -12,7 +12,7 @@ public enum NightLifeOptions {
             Messages.CLASSIC_BAR_LUCK,Messages.CLASSIC_BAR_NO_LUCK,
             150,20),
 
-    Weed (Messages.BUY_WEED, 3, 120,30,
+    Weed (Messages.BUY_WEED, 3, 45,30,
             Messages.WEED_LUCK,Messages.WEED_NO_LUCK,
             100,20);
 

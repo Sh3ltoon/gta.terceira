@@ -17,6 +17,7 @@ public class Player {
     private Set<WeaponsInter> weapons;
     private Socket socket;
     private boolean jailed;
+    private boolean hospitalized;
 
     public Player(String name) {
 
@@ -26,11 +27,25 @@ public class Player {
         energyPoints = 100;
         weapons = new HashSet<>();
         this.name = name;
+        jailed = false;
+        hospitalized = false;
 
     }
 
     public boolean isJailed() {
         return jailed;
+    }
+
+    public boolean isHospitalized() {
+        return hospitalized;
+    }
+
+    public void setJailed(boolean jailed) {
+        this.jailed = jailed;
+    }
+
+    public void setHospitalized(boolean hospitalized) {
+        this.hospitalized = hospitalized;
     }
 
     public void setMoney(int money) {
@@ -58,14 +73,28 @@ public class Player {
     }
 
     public void setEnergy(int energyPoints) {
+        if(energyPoints <= 0){
+            this.energyPoints = 0;
+            return;
+        }
         this.energyPoints = energyPoints;
     }
 
     public void setExperience(double experience) {
+
+        if(experience <= 0){
+            this.experience = 0;
+            return;
+        }
         this.experience = experience;
+
     }
 
     public void setHealth(int healthPoints) {
+        if(healthPoints <= 0){
+            this.healthPoints = 0;
+            return;
+        }
         this.healthPoints = healthPoints;
     }
 
@@ -84,16 +113,6 @@ public class Player {
 
     public Set<WeaponsInter> getWeapons() {
         return weapons;
-    }
-
-    public String[] getWeaponsName() {
-        String[] weaponsName = new String[weapons.size()];
-        int counter = 0;
-        for (WeaponsInter w: weapons) {
-            weaponsName[counter] = w.getName();
-            counter++;
-        }
-        return weaponsName;
     }
 
     public void setSocket(Socket socket) {

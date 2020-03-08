@@ -1,8 +1,10 @@
 package carcrashteam.nightlife;
 
 import carcrashteam.Player;
+import carcrashteam.utilities.AsciiImages;
 import carcrashteam.utilities.Checker;
 import carcrashteam.utilities.Messages;
+import carcrashteam.utilities.PlayerUtils;
 
 public class Weed extends NightLifeAbstract{
     @Override
