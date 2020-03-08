@@ -37,7 +37,7 @@ public abstract class AssaultAbstract implements Assault {
         }
 
         PlayerUtils.sendMessage(player,Messages.SENT_PRISON + "Wait " + assaultOption.getSentenceTime() + " seconds");
-        goToPrision(assaultOption);
+        goToPrison(assaultOption);
         PlayerUtils.sendMessage(player,"+ " +assaultOption.getXpWon() + " XP");
 
     }
@@ -71,15 +71,18 @@ public abstract class AssaultAbstract implements Assault {
 
         double successProbability = Math.random() * player.getExperience();
         return successProbability >= assaultOption.getSuccessProbability();
+
     }
 
-    public int givePlayerMoney(Player player, AssaultOptions assaultOptions){
+    private int givePlayerMoney(Player player, AssaultOptions assaultOptions){
+
         int money = RandomNumber.getRandomNumberInRange(assaultOptions.getMinMoney(),assaultOptions.getMaxMoney());
         player.setMoney(player.getMoney() + money);
         return money;
+
     }
 
-    public void goToPrision(AssaultOptions assaultOption){
+    private void goToPrison(AssaultOptions assaultOption){
 
         try {
             Thread.sleep(assaultOption.getSentenceTime());
