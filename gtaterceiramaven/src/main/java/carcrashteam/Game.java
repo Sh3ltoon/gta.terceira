@@ -113,7 +113,7 @@ public class Game {
 
     public void displayAssault(MenuInputScanner assaultMenu, String name) {
 
-        int option =  prompt.getUserInput(assaultMenu);
+        int option = prompt.getUserInput(assaultMenu);
 
         AssaultOptions assaultOption = null;
 
@@ -146,12 +146,19 @@ public class Game {
     }
 
     public void hospital(String name) {
-        System.out.println(Messages.ENTERING_HOSPITAL);
-        Player player = playerHashMap.get(name);
-        player.setHealth(200);
-        player.setMoney(player.getMoney() - 200);
-        System.out.println(Messages.LEAVING_HOSPITAL);
-        mainMenu(name);
+            Player player = playerHashMap.get(name);
+        try {
+            PrintStream stream = new PrintStream(map.get(player).getOutputStream());
+            stream.println(Messages.ENTERING_HOSPITAL);
+            player.setHealth(200);
+            player.setMoney(player.getMoney() - 200);
+            stream.println(Messages.LEAVING_HOSPITAL);
+            mainMenu(name);
+
+        } catch (IOException ed) {
+            ed.getMessage();
+        }
+
     }
 
     public void displayStatus(String name) throws IOException {
@@ -196,7 +203,7 @@ public class Game {
         Player winner;
         Player looser;
 
-        if( Checker.attackChecker(attacker,target)) {
+        if (Checker.attackChecker(attacker, target)) {
             if (target.getExperience() > attacker.getExperience()) {
                 winner = target;
                 looser = attacker;
@@ -221,14 +228,12 @@ public class Game {
 
 
             mainMenu(name);
-        }else{
+        } else {
             String message = "You can't attack " + target.getName();
             notifier(attacker, message);
             mainMenu(name);
 
         }
-
-
 
 
     }
@@ -298,10 +303,9 @@ public class Game {
         p2Output.println(messageP2);
 
 
-
     }
 
-    public void notifier(Player player, String message){
+    public void notifier(Player player, String message) {
         PrintStream output = null;
 
         try {
